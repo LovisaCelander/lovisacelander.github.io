@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NXQ526ZN');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om mig</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Open+Sans&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #FFF9DB;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 50px 20px;
+    }
+
+    /* Rubrik container */
+    .title {
+      display: flex;
+      gap: 0.1em;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    /* Varje bokstav animeras */
+    .letter {
+      opacity: 0;
+      transform: scale(0.8);
+      animation: popIn 0.5s ease forwards;
+    }
+
+    .letter:nth-child(1) { animation-delay: 0s; }
+    .letter:nth-child(2) { animation-delay: 0.1s; }
+    .letter:nth-child(3) { animation-delay: 0.2s; }
+    .letter:nth-child(4) { animation-delay: 0.3s; }
+    .letter:nth-child(5) { animation-delay: 0.4s; }
+    .letter:nth-child(6) { animation-delay: 0.5s; }
+
+    @keyframes popIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Glow-effekt på hover */
+    .title:hover {
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    p {
+      max-width: 600px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    a {
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #000;
+      color: #FFF9DB;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1em;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <!-- Rubrik: Om mig, med bokstav för bokstav-effekt -->
+  <div class="title">
+    <span class="letter">O</span>
+    <span class="letter">m</span>
+    <span class="letter">&nbsp;</span>
+    <span class="letter">m</span>
+    <span class="letter">i</span>
+    <span class="letter">g</span>
+  </div>
+
+  <p>
+    Hej! Jag heter Lovisa Celander.</p>
+
+  <a href="index.html">← Tillbaka till startsidan</a>
+
+</body>
+</html>
+
+
+
