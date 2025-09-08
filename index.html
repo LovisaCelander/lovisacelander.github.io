@@ -166,20 +166,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   </style>
 </head>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<p id="resultat"></p>
+
+
   <!-- === HEADER === -->
   <header>
     <h1>Lovisa Celander</h1>
-    <nav>
-      <a href="#about"><a href="om-mig.html">Om mig</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Kontakt</a>
-    </nav>
+
+   <nav>
+  <a href="om-mig.html" id="omMigKnapp">Om mig</a>
+  <a href="#portfolio" id="portfolioKnapp">Portfolio</a>
+  <a href="#contact" id="kontaktKnapp">Kontakt</a>
+</nav>
+
   </header>
 
   <!-- === FOLDERS === -->
@@ -208,7 +214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div class="spacer"></div>
-
+<script src="script.js"></script>
 </body>
 </html>
 
