@@ -8,3 +8,55 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.title {
+  display: flex;
+  gap: 0.1em;
+  font-family: 'Pinyon Script', cursive;
+  font-size: 3em;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.letter {
+  opacity: 0;
+  transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  animation: popIn 0.5s ease forwards;
+  -webkit-animation: popIn 0.5s ease forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Försök med will-change för bättre prestanda */
+  will-change: opacity, transform;
+}
+
+.letter:nth-child(1) { animation-delay: 0s; -webkit-animation-delay: 0s; }
+.letter:nth-child(2) { animation-delay: 0.1s; -webkit-animation-delay: 0.1s; }
+.letter:nth-child(3) { animation-delay: 0.2s; -webkit-animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.3s; -webkit-animation-delay: 0.3s; }
+.letter:nth-child(5) { animation-delay: 0.4s; -webkit-animation-delay: 0.4s; }
+.letter:nth-child(6) { animation-delay: 0.5s; -webkit-animation-delay: 0.5s; }
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes popIn {
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+/* Hover-effekt */
+.title:hover {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  transition: all 0.3s ease-in-out;
+}
+
+
