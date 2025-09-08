@@ -31,7 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 2rem;
       text-align: center;
       margin-top: 60px;
-      color: #86745f;
+      color: #1a1a18;
     }
 
     /* ==== HEADER ==== */
@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     header h1 {
       font-family: 'Pinyon Script', cursive;
       font-size: 3.5rem;
-      color: #b49a75;
+      color: #20201e;
       margin: 0;
       border-right: 2px solid #b49a75;
       white-space: nowrap;
@@ -175,32 +175,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <p id="resultat"></p>
 
-
   <!-- === HEADER === -->
   <header>
     <h1>Lovisa Celander</h1>
 
    <nav>
   <a href="om-mig.html" id="omMigKnapp">Om mig</a>
-  <a href="#portfolio" id="portfolioKnapp">Portfolio</a>
+  <a href="portfolio.html" id="portfolioKnapp">Portfolio</a>
+
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  function handlePortfolioClick() {
+    window.dataLayer.push({
+      event: 'button_click',
+      button_name: 'portfolioKnapp'
+    });
+    console.log('Event skickat till dataLayer:', {event: 'button_click', button_name: 'portfolioKnapp'});
+  }
+
+  document.getElementById('portfolioKnapp').addEventListener('click', handlePortfolioClick);
+</script>
+
   <a href="#contact" id="kontaktKnapp">Kontakt</a>
 </nav>
+
+
+
+
 
   </header>
 
   <!-- === FOLDERS === -->
-  <section class="folders-cloud">
-    <div class="folders">
-      <div class="folder" onclick="location.href='#cv'">
-        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="CV" />
-        <p>CV</p>
-      </div>
-      <div class="folder" onclick="location.href='#portfolio'">
-        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Portfolio" />
-        <p>Portfolio</p>
-      </div>
-    </div>
-  </section>
+ <section class="folders-cloud">
+  <div class="folders">
+    <a href="#cv" id="cvKnapp" class="folder">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="CV" />
+      <p>CV</p>
+    </a>
+    <a href="portfolio.html" id="portfolioKnapp" class="folder">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Portfolio" />
+      <p>Portfolio</p>
+    </a>
+  </div>
+</section>
+
 
   <!-- === KONTAKT === -->
   <section id="contact">

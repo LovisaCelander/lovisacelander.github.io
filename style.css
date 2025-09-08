@@ -59,4 +59,23 @@
   transition: all 0.3s ease-in-out;
 }
 
+.folder {
+  display: inline-block; /* eller block om du vill */
+  background: #fffefc;
+  padding: 25px 20px;
+  border-radius: 18px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 130px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none; /* Tar bort understrykning */
+  color: inherit; /* Behåll textfärg */
+  margin: 0 10px; /* Lite mellanrum om du vill */
+}
+
+.folder:hover {
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 0 12px 20px rgba(200, 180, 130, 0.4);
+}
 
