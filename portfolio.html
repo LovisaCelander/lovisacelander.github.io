@@ -1,50 +1,131 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NXQ526ZN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio – Lovisa Celander</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Open+Sans&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Quicksand:wght@500&family=Open+Sans&display=swap" rel="stylesheet" />
 
   <style>
     body {
       background-color: #f1f0eb;
       font-family: 'Open Sans', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 0 20px 50px;
       color: #000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      padding: 50px 20px;
     }
 
-    h1 {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 3em;
-      margin-bottom: 20px;
-    }
-
-    .section {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      margin: 20px 0;
-      border-radius: 12px;
-      max-width: 700px;
+    .intro {
+      text-align: center;
+      margin: 50px 0 30px;
       width: 100%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      max-width: 700px;
     }
 
-    .section h2 {
+    .typing {
+      font-family: 'Pinyon Script', cursive;
+      font-weight: normal;
+      font-size: 3em;
       color: #86745f;
-      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #86745f;
+      animation: typing 3s steps(9) forwards, blink 0.75s step-end infinite;
+      margin: 0;
+      width: 0; /* Start med 0 och öka under animation */
     }
 
-    .section p {
-      line-height: 1.6;
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 9ch; } /* 9 tecken i "Portfolio" */
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+      100% { border-color: #86745f; }
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #666;
+      margin-top: 10px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* Accordion styles */
+    .accordion {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #86745f;
+      cursor: pointer;
+      padding: 18px 30px;
+      width: 100%;
+      max-width: 700px;
+      border: none;
+      border-radius: 12px;
+      margin: 12px 0;
+      text-align: left;
+      font-size: 1.25em;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: background-color 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion:hover {
+      background-color: #e5dccb;
+    }
+
+    .accordion::after {
+      content: '+';
+      font-size: 1.5em;
+      color: #86745f;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion.active::after {
+      content: '−';
+      transform: rotate(180deg);
+    }
+
+    .panel {
+      padding: 0 30px 20px 30px;
+      max-width: 700px;
+      background-color: rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      border-radius: 0 0 12px 12px;
       font-size: 1.05em;
+      line-height: 1.6;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .panel.open {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .panel p {
+      margin: 10px 0 0 0;
     }
 
     a {
@@ -58,6 +139,8 @@
       border-radius: 50px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       transition: background-color 0.3s ease, transform 0.2s ease;
+      max-width: 700px;
+      display: inline-block;
     }
 
     a:hover {
@@ -67,53 +150,84 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-  <h1>Portfolio</h1>
-
-  <div class="section">
-    <h2>💡 Vad jag lärt mig hittills</h2>
-    <p>
-      Under den första delen av kursen i Growth Marketing har jag fått en bred förståelse för olika digitala verktyg och arbetssätt. Jag har jobbat praktiskt med kod, analys och strategi – och här är några konkreta saker jag lärt mig:
-    </p>
+  <div class="intro">
+    <h1 class="typing">Portfolio</h1>
+    <p class="subtitle">En inblick i vad jag skapat & lärt mig under min utbildning i Google Toolbox kursen.</p>
   </div>
 
-  <div class="section">
-    <h2>📁 Scraping</h2>
-    <p>
-      Jag har byggt en web scraper i Node.js med Puppeteer som samlar in priser från produkter på en e-handelssida (t.ex. Prisjakt). Datan sparas automatiskt i en CSV-fil och uppdateras via ett cron-jobb. Det här visar hur man kan hämta data automatiskt från webben.
-    </p>
+  <button class="accordion">💡 Vad jag lärt mig hittills</button>
+  <div class="panel">
+    <p>Under den första delen av kursen i Growth Marketing har jag fått en bred förståelse för olika digitala verktyg och arbetssätt. Jag har jobbat praktiskt med kod, analys och strategi och här är några konkreta saker jag lärt mig:</p>
   </div>
 
-  <div class="section">
-    <h2>📊 Google Analytics 4 & GTM</h2>
-    <p>
-      Jag har kopplat min webbplats till <strong>Google Analytics 4</strong> via <strong>Google Tag Manager</strong>. Jag har även lagt in event-triggers som skickar data när man klickar på t.ex. "Om mig" eller "Portfolio". Det gör att jag kan spåra besökarens beteende och fatta bättre beslut.
-    </p>
+  <button class="accordion">📁 Scraping</button>
+  <div class="panel">
+    <p>Jag har byggt en web scraper i Node.js med Puppeteer som samlar in priser från produkter på en e-handelssida (t.ex. Prisjakt). Datan sparas automatiskt i en CSV-fil och uppdateras via ett cron-jobb. Det här visar hur man kan hämta data automatiskt från webben.</p>
   </div>
 
-  <div class="section">
-    <h2>🤖 Prompt Engineering</h2>
-    <p>
-      Jag har lärt mig hur man skriver effektiva prompts för att få bättre svar från AI-verktyg som ChatGPT. Det handlar om att vara tydlig, kontextuell och målstyrd i sitt språk.
-    </p>
+  <button class="accordion">📊 Google Analytics 4 & GTM</button>
+  <div class="panel">
+    <p>Jag har kopplat min webbplats till <strong>Google Analytics 4</strong> via <strong>Google Tag Manager</strong>. Jag har även lagt in event-triggers som skickar data när man klickar på t.ex. "Om mig" eller "Portfolio". Det gör att jag kan spåra besökarens beteende och fatta bättre beslut.</p>
   </div>
 
-  <div class="section">
-    <h2>📈 Looker Studio & Chart.js</h2>
-    <p>
-      Vi har visualiserat data med hjälp av Google Looker Studio och byggt grafer i Chart.js. Jag har sett hur data kan omvandlas till insikter genom tydliga och snygga dashboards.
-    </p>
+  <button class="accordion">🤖 Prompt Engineering</button>
+  <div class="panel">
+    <p>Jag har lärt mig hur man skriver effektiva prompts för att få bättre svar från AI-verktyg som ChatGPT. Det handlar om att vara tydlig, kontextuell och målstyrd i sitt språk.</p>
   </div>
 
-  <div class="section">
-    <h2>🚀 Tillväxtstrategier & Branschinsikt</h2>
-    <p>
-      Jag har fått en introduktion till olika tillväxtstrategier och börjat fundera på var i branschen jag vill jobba. Jag är särskilt intresserad av rollen som Growth Analyst eller Digital Strateg.
-    </p>
+  <button class="accordion">📈 Looker Studio & Chart.js</button>
+  <div class="panel">
+    <p>Vi har visualiserat data med hjälp av Google Looker Studio och byggt grafer i Chart.js. Jag har sett hur data kan omvandlas till insikter genom tydliga och snygga dashboards.</p>
+  </div>
+
+  <button class="accordion">🚀 Tillväxtstrategier & Branschinsikt</button>
+  <div class="panel">
+    <p>Jag har fått en introduktion till olika tillväxtstrategier och börjat fundera på var i branschen jag vill jobba. Jag är särskilt intresserad av rollen som Growth Analyst eller Digital Strateg.</p>
   </div>
 
   <a href="index.html">← Tillbaka till startsidan</a>
 
+  <script>
+    const accordions = document.querySelectorAll('.accordion');
+
+    accordions.forEach(acc => {
+      acc.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+          panel.classList.remove('open');
+        } else {
+          // Stäng alla andra paneler (valfritt)
+          accordions.forEach(otherAcc => {
+            if (otherAcc !== this) {
+              otherAcc.classList.remove('active');
+              otherAcc.nextElementSibling.style.maxHeight = null;
+              otherAcc.nextElementSibling.classList.remove('open');
+            }
+          });
+
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.classList.add('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
