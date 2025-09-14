@@ -1,8 +1,7 @@
-
-
 window.dataLayer = window.dataLayer || [];
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Funktion för att registrera klick på navigationsknappar
   function registreraNavigationsKlick(id, text) {
     const element = document.getElementById(id);
     if (element) {
@@ -33,7 +32,30 @@ document.addEventListener("DOMContentLoaded", function () {
   registreraNavigationsKlick("kontaktKnapp", "Kontakt");
   registreraNavigationsKlick("portfolioKnapp", "Portfolio");
   registreraNavigationsKlick("cvKnapp", "CV");
+
+  // Accordion klick-event
+  const accordions = document.querySelectorAll('.accordion');
+
+  accordions.forEach(acc => {
+    acc.addEventListener('click', function () {
+      const eventData = {
+        event: 'accordion_click',
+        link_id: this.id || null,
+        link_text: this.textContent.trim(),
+        // Accordion är inte länkar, men vi kan använda nuvarande sida url
+        link_url: window.location.href,
+        timestamp: new Date().toISOString()
+      };
+
+      window.dataLayer.push(eventData);
+      console.log('Accordion click event skickat:', eventData);
+    });
+  });
 });
+
+
+
+
 
 
 

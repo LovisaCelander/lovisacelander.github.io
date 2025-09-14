@@ -161,67 +161,43 @@
     <p class="subtitle">En inblick i vad jag skapat & lärt mig under min utbildning i Google Toolbox kursen.</p>
   </div>
 
-  <button class="accordion">💡 Vad jag lärt mig hittills</button>
+  <!-- Accordion Buttons + Panels -->
+  <button id="accordion1" class="accordion">💡 Vad jag lärt mig hittills</button>
   <div class="panel">
-    <p>Under den första delen av kursen i Growth Marketing har jag fått en bred förståelse för olika digitala verktyg och arbetssätt. Jag har jobbat praktiskt med kod, analys och strategi och här är några konkreta saker jag lärt mig:</p>
+    <p>Under den första kursen i Growth Marketing som heter Google Toolbox, har jag fått en bred förståelse för olika digitala verktyg och arbetssätt. Jag har jobbat praktiskt med kod, analys och strategi och här är några konkreta saker jag lärt mig:</p>
   </div>
 
-  <button class="accordion">📁 Scraping</button>
+  <button id="accordion2" class="accordion">📁 Scraping</button>
   <div class="panel">
-    <p>Jag har byggt en web scraper i Node.js med Puppeteer som samlar in priser från produkter på en e-handelssida (t.ex. Prisjakt). Datan sparas automatiskt i en CSV-fil och uppdateras via ett cron-jobb. Det här visar hur man kan hämta data automatiskt från webben.</p>
+    <p> Jag har byggt en web scraper som samlar in priser, produktnamn och URL från en e-handelssida (Prisjakt). Datan sparas automatiskt i en CSV-fil, som sedan kan öppnas i ett program som excel för vidare analys.</p>
   </div>
 
-  <button class="accordion">📊 Google Analytics 4 & GTM</button>
+  <button id="accordion3" class="accordion">📊 Google Analytics 4 & GTM</button>
   <div class="panel">
     <p>Jag har kopplat min webbplats till <strong>Google Analytics 4</strong> via <strong>Google Tag Manager</strong>. Jag har även lagt in event-triggers som skickar data när man klickar på t.ex. "Om mig" eller "Portfolio". Det gör att jag kan spåra besökarens beteende och fatta bättre beslut.</p>
   </div>
 
-  <button class="accordion">🤖 Prompt Engineering</button>
+  <button id="accordion4" class="accordion">🤖 Prompt Engineering</button>
   <div class="panel">
     <p>Jag har lärt mig hur man skriver effektiva prompts för att få bättre svar från AI-verktyg som ChatGPT. Det handlar om att vara tydlig, kontextuell och målstyrd i sitt språk.</p>
   </div>
 
-  <button class="accordion">📈 Looker Studio & Chart.js</button>
+  <button id="accordion5" class="accordion">📈 Looker Studio & Chart.js</button>
   <div class="panel">
-    <p>Vi har visualiserat data med hjälp av Google Looker Studio och byggt grafer i Chart.js. Jag har sett hur data kan omvandlas till insikter genom tydliga och snygga dashboards.</p>
+    <p>Vi har visualiserat data med hjälp av Google Looker Studio. Jag har sett hur data kan omvandlas till insikter genom tydliga och snygga dashboards.</p>
   </div>
 
-  <button class="accordion">🚀 Tillväxtstrategier & Branschinsikt</button>
+  <button id="accordion6" class="accordion">🚀 Tillväxtstrategier & Branschinsikt</button>
   <div class="panel">
-    <p>Jag har fått en introduktion till olika tillväxtstrategier och börjat fundera på var i branschen jag vill jobba. Jag är särskilt intresserad av rollen som Growth Analyst eller Digital Strateg.</p>
+    <p>Jag har fått en introduktion till growth marketing och dess olika tillväxtstrategier, och insett hur viktigt det är att inte bara samla in data, utan också kunna analysera och motivera den för att driva effektiv tillväxt.</p>
   </div>
 
   <a href="index.html">← Tillbaka till startsidan</a>
 
-  <script>
-    const accordions = document.querySelectorAll('.accordion');
-
-    accordions.forEach(acc => {
-      acc.addEventListener('click', function() {
-        this.classList.toggle('active');
-        const panel = this.nextElementSibling;
-
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-          panel.classList.remove('open');
-        } else {
-          // Stäng alla andra paneler (valfritt)
-          accordions.forEach(otherAcc => {
-            if (otherAcc !== this) {
-              otherAcc.classList.remove('active');
-              otherAcc.nextElementSibling.style.maxHeight = null;
-              otherAcc.nextElementSibling.classList.remove('open');
-            }
-          });
-
-          panel.style.maxHeight = panel.scrollHeight + "px";
-          panel.classList.add('open');
-        }
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
