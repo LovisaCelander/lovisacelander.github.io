@@ -43,14 +43,16 @@
       white-space: nowrap;
       overflow: hidden;
       border-right: 3px solid #86745f;
-      animation: typing 3s steps(9) forwards, blink 0.75s step-end infinite;
-      margin: 0;
-      width: 0; /* Start med 0 och öka under animation */
+      /* Sätt fast width så texten inte hoppar */
+      width: 9ch;
+      max-width: 0;
+      animation: typing 1.5s steps(9) forwards, blink 0.7s step-end infinite;
+      margin: 0 auto;
     }
 
     @keyframes typing {
-      from { width: 0; }
-      to { width: 9ch; } /* 9 tecken i "Portfolio" */
+      from { max-width: 0; }
+      to { max-width: 9ch; }
     }
 
     @keyframes blink {
@@ -182,7 +184,7 @@
     <p>Jag har lärt mig hur man skriver effektiva prompts för att få bättre svar från AI-verktyg som ChatGPT. Det handlar om att vara tydlig, kontextuell och målstyrd i sitt språk.</p>
   </div>
 
-  <button id="accordion5" class="accordion">📈 Looker Studio & Chart.js</button>
+  <button id="accordion5" class="accordion">📈 Google Looker Studio </button>
   <div class="panel">
     <p>Vi har visualiserat data med hjälp av Google Looker Studio. Jag har sett hur data kan omvandlas till insikter genom tydliga och snygga dashboards.</p>
   </div>
@@ -194,9 +196,27 @@
 
   <a href="index.html">← Tillbaka till startsidan</a>
 
-  <script src="script.js"></script>
+  <!-- Accordion functionality script -->
+  <script>
+    document.querySelectorAll('.accordion').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        const panel = button.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+          panel.classList.remove('open');
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.classList.add('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
+
+
+
 
 
 
