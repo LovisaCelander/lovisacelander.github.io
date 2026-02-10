@@ -1,95 +1,94 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NXQ526ZN');</script>
-<!-- End Google Tag Manager -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lovisa Celander – Portfolio</title>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NXQ526ZN');
+  </script>
+  <!-- End Google Tag Manager -->
 
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lovisa Celander</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ==== GENERELLT ==== */
+    :root {
+      --bg-main: #f6f1ed;
+      --bg-section: #ede4da;
+      --text-main: #1f1f1f;
+      --text-soft: #6f665b;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
+      background: var(--bg-main);
+      color: var(--text-main);
       font-family: 'Montserrat', sans-serif;
-      background: #fdf8f3;
-      color: #4b4637;
-      scroll-behavior: smooth;
     }
 
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
+    /* ===== STICKY HEADER ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       text-align: center;
-      margin-top: 60px;
-      color: #1a1a18;
+      padding: 100px 20px 40px;
+      background: linear-gradient(
+        to bottom,
+        rgba(246,241,237,0.95),
+        rgba(246,241,237,0.85),
+        rgba(246,241,237,0)
+      );
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    /* ==== HEADER ==== */
-    header {
-      text-align: center;
-      padding: 60px 20px;
-      background-color: transparent;
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-40px);
+      pointer-events: none;
     }
 
-    header h1 {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 3.5rem;
-      color: #20201e;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.6rem;
+      font-weight: 400;
       margin: 0;
-      border-right: 2px solid #b49a75;
-      white-space: nowrap;
-      overflow: hidden;
-      display: inline-block;
-      width: 0;
-      animation: type 3s steps(17, end) forwards, blink 1s step-end infinite;
-    }
-
-    @keyframes type {
-      from { width: 0; }
-      to { width: 17ch; } /* Exakt längd för 'Lovisa Celander' */
-    }
-
-    @keyframes blink {
-      0%, 100% { border-color: #b49a75; }
-      50% { border-color: transparent; }
+      letter-spacing: 2px;
     }
 
     nav {
-      margin-top: 20px;
+      margin-top: 35px;
     }
 
     nav a {
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
       text-decoration: none;
-      color: #7a6f57;
-      margin: 0 15px;
-      transition: color 0.3s;
+      color: var(--text-soft);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 18px;
+      transition: opacity 0.3s ease;
     }
 
     nav a:hover {
-      color: #c5ab6f;
+      opacity: 0.6;
     }
 
-    /* ==== MAPPAR === */
+    /* ===== SECTION ===== */
     .folders-cloud {
-      margin: 60px auto;
-      padding: 60px 20px;
-      background: #ffffffcc;
-      border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
-      max-width: 900px;
-      box-shadow: 0 12px 30px rgba(198, 181, 140, 0.2);
+      max-width: 1200px;
+      margin: 160px auto;
+      padding: 120px 40px;
+      background: var(--bg-section);
+      border-radius: 70px;
     }
 
     .folders {
@@ -99,140 +98,171 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       flex-wrap: wrap;
     }
 
+    /* ===== CARDS ===== */
     .folder {
-      background: #fffefc;
-      padding: 25px 20px;
-      border-radius: 18px;
+      background: var(--white);
+      width: 220px;
+      padding: 48px 20px;
+      border-radius: 38px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      width: 130px;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      transform: scale(0.85);
+      opacity: 0;
+      transition:
+        transform 0.8s cubic-bezier(.19,1,.22,1),
+        opacity 0.6s ease,
+        box-shadow 0.6s ease;
+    }
+
+    .folder.in-view {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 35px 70px rgba(0,0,0,0.2);
     }
 
     .folder:hover {
-      transform: rotate(-2deg) scale(1.05);
-      box-shadow: 0 12px 20px rgba(200, 180, 130, 0.4);
+      transform: scale(1.05);
     }
 
-    .folder img {
-      width: 80px;
-      margin-bottom: 10px;
-    }
-
-    .folder p {
-      font-weight: 600;
-      color: #6a5b47;
+    .folder-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      letter-spacing: 1px;
       margin: 0;
+      color: var(--text-main);
     }
 
-    /* ==== KONTAKT ==== */
+    /* ===== CONTACT ===== */
     #contact {
-      padding: 60px 20px 100px;
+      padding: 140px 20px 180px;
       text-align: center;
     }
 
     #contact h2 {
-      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 34px;
     }
 
     .contact-box {
-      background: #fffefc;
-      max-width: 500px;
+      background: var(--white);
+      max-width: 520px;
       margin: 0 auto;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(180, 160, 120, 0.2);
+      padding: 50px;
+      border-radius: 40px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.18);
     }
 
     .contact-box p {
-      font-size: 1.1rem;
       margin: 0;
+      font-size: 1.05rem;
     }
 
     .contact-box a {
-      color: #b49a75;
-      text-decoration: none;
+      color: var(--text-soft);
       font-weight: 600;
+      text-decoration: none;
     }
 
     .contact-box a:hover {
       text-decoration: underline;
     }
 
-    /* Extra scrollutrymme */
-    .spacer {
-      height: 300px;
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 3.4rem;
+      }
     }
   </style>
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-<p id="resultat"></p>
-
-  <!-- === HEADER === -->
-  <header>
+  <!-- HEADER -->
+  <header class="header" id="siteHeader">
     <h1>Lovisa Celander</h1>
-
-   <nav>
-  <a href="om-mig.html" id="omMigKnapp">Om mig</a>
-  <a href="portfolio.html" id="portfolioKnapp">Portfolio</a>
-
-  <script>
-  window.dataLayer = window.dataLayer || [];
-
-  function handlePortfolioClick() {
-    window.dataLayer.push({
-      event: 'button_click',
-      button_name: 'portfolioKnapp'
-    });
-    console.log('Event skickat till dataLayer:', {event: 'button_click', button_name: 'portfolioKnapp'});
-  }
-
-  document.getElementById('portfolioKnapp').addEventListener('click', handlePortfolioClick);
-</script>
-
-  <a href="#contact" id="kontaktKnapp">Kontakt</a>
-</nav>
-
-
-
-
-
+    <nav>
+      <a href="om-mig.html">Om mig</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="#cv">CV</a>
+      <a href="#projekt">Projekt</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
   </header>
 
-  <!-- === FOLDERS === -->
- <section class="folders-cloud">
-  <div class="folders">
-    <a href="#cv" id="cvKnapp" class="folder">
-      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="CV" />
-      <p>CV</p>
-    </a>
-    <a href="portfolio.html" id="portfolioKnapp" class="folder">
-      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Portfolio" />
-      <p>Portfolio</p>
-    </a>
-  </div>
-</section>
+  <!-- CARDS -->
+  <section class="folders-cloud">
+    <div class="folders">
+      <a href="#cv" class="folder">
+        <p class="folder-title">CV</p>
+      </a>
 
+      <a href="portfolio.html" class="folder">
+        <p class="folder-title">Portfolio</p>
+      </a>
 
-  <!-- === KONTAKT === -->
+      <a href="#projekt" class="folder">
+        <p class="folder-title">Projekt</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact">
-    <h2>Kontakt</h2>
+    <h2>Let’s connect</h2>
     <div class="contact-box">
-      <p>Har du frågor, samarbeten eller bara vill säga hej?</p>
-      <p style="margin-top: 15px;">
+      <p></p>
+      <p style="margin-top:18px;">
         <a href="mailto:celanderlovisa@gmail.com">celanderlovisa@gmail.com</a>
       </p>
     </div>
   </section>
 
-  <div class="spacer"></div>
-<script src="script.js"></script>
+  <!-- SCROLL EFFECTS -->
+  <script>
+    /* Hide header on scroll */
+    const header = document.getElementById('siteHeader');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll > 120) {
+        header.classList.add('hidden');
+      } else {
+        header.classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+
+    /* Cards animation */
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    document.querySelectorAll('.folder').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+
 </body>
 </html>
+
+
+
+
+
