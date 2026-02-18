@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Steal My Thinking — Lovisa Celander</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4b4637",
+                        "bg-main": "#fdf8f3",
+                        "card-bg": "#fffefc",
+                        "warm-grey": "#7a6f57",
+                        "border-beige": "#e6dfd1"
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Montserrat", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::selection { background: #000; color: #fff; }
+
+        body { 
+            background-color: #fdf8f3; 
+            color: #4b4637; 
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased; 
+            overflow-x: hidden; 
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 50;
+            filter: brightness(0.5);
+        }
+        
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+
+        .spotlight-container { position: relative; display: inline-block; cursor: default; }
+        .spotlight-text { color: black; transition: color 0.3s ease; }
+        .spotlight-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            color: white;
+            -webkit-clip-path: circle(0% at 0% 0%);
+            clip-path: circle(0% at 0% 0%);
+            pointer-events: none;
+            user-select: none;
+            transition: clip-path 0.15s ease-out, -webkit-clip-path 0.15s ease-out;
+            width: 100%;
+            filter: drop-shadow(0 0 2px white); 
+        }
+
+        .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        #success-message { display: none; opacity: 0; transform: translateY(10px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        #success-message.visible { display: flex; opacity: 1; transform: translateY(0); }
+
+        .locked-item { pointer-events: none; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .locked-item.unlocked { pointer-events: auto; opacity: 1 !important; filter: grayscale(0) !important; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        #toast, #scroll-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1a1a17;
+            color: #fdf8f3;
+            padding: 1.2rem 2rem;
+            border-radius: 1.5rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transform: translateY(150px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        #toast.show, #scroll-toast.show { transform: translateY(0); }
+        
+        /* Klickbar pop-up */
+        #scroll-toast { cursor: pointer; border: 1px solid transparent; }
+        #scroll-toast:hover { background: #000; border-color: rgba(255,255,255,0.1); }
+
+        /* Input highlight animation */
+        @keyframes input-nudge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); border-color: #4b4637; }
+        }
+        .nudge-active { animation: input-nudge 0.6s ease-in-out 2; }
+
+        @keyframes soft-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-soft-bounce { animation: soft-bounce 2s infinite ease-in-out; }
+    </style>
+</head>
+
+<body>
+
+<div id="toast"><span id="toast-text">Transmission Complete</span></div>
+
+<div id="scroll-toast" onclick="jumpToEmail()" class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-sm">lock_open</span>
+    <span>Ready to unlock the full strategy?</span>
+</div>
+
+<nav class="px-8 md:px-16 py-12 flex justify-between items-center">
+    <a href="index.html" class="group text-[0.75rem] tracking-[2px] uppercase text-warm-grey hover:text-primary transition-all flex items-center gap-2 font-semibold">
+        <span class="material-symbols-outlined text-sm font-bold group-hover:-translate-x-1 transition-transform text-primary">west</span>
+        Back to landing page
+    </a>
+</nav>
+
+<main class="max-w-[1400px] mx-auto px-8 md:px-16 pb-24">
+    <div class="max-w-4xl space-y-16 pt-4">
+        <div id="parallax-header" class="space-y-8">
+            <div class="spotlight-container fade-up" id="spotlight-area">
+                <h1 class="spotlight-text text-7xl md:text-[10rem] font-normal tracking-tighter leading-[0.8]">
+                    Steal My <br/>
+                    <span class="italic">Thinking.</span>
+                </h1>
+                <h1 class="spotlight-overlay text-7xl md:text-[10rem] font-normal tracking-tighter leading-[0.8]">
+                    Steal My <br/>
+                    <span class="italic">Thinking.</span>
+                </h1>
+            </div>
+            <p class="text-xl md:text-2xl text-warm-grey font-light leading-relaxed max-w-xl fade-up delay-1">
+                Most portfolios show what people have <span class="font-semibold text-black">done</span>. <br/> This one shows how I <span class="font-semibold text-black">think</span>.
+            </p>
+        </div>
+
+        <div class="max-w-md relative fade-up delay-2"> 
+            <form id="vault-form" class="flex flex-col gap-6" onsubmit="handleVaultSubmit(event)">
+                <div class="relative group">
+                    <input id="user-email" class="w-full bg-[#fffefc] border border-[#e6dfd1] py-5 px-8 rounded-full transition-all duration-300 text-lg font-light placeholder:text-warm-grey outline-none" placeholder="Enter email to steal my brain" type="email" required />
+                </div>
+                <div class="flex items-center gap-6" id="btn-container">
+                    <button id="vault-button" class="bg-primary text-white px-10 py-5 rounded-full text-xs font-semibold tracking-[0.2em] uppercase hover:bg-black shadow-xl shadow-primary/5 transition-all">UNLOCK VAULT</button>
+                    <span class="text-[9px] font-semibold uppercase tracking-[0.2em] text-warm-grey flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[14px] animate-pulse">history</span>
+                        Limited Access
+                    </span>
+                </div>
+            </form>
+
+            <div id="success-message" class="py-4 flex flex-col md:flex-row md:items-end gap-8">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 text-primary opacity-60">
+                        <span class="material-symbols-outlined text-lg">verified</span>
+                        <span class="text-[10px] font-semibold tracking-[0.2em] uppercase">Identity Confirmed</span>
+                    </div>
+                    <p class="text-4xl font-serif tracking-tight text-primary leading-tight">You’re in. <br/><span class="italic opacity-50">The vault is open.</span></p>
+                </div>
+                <button onclick="downloadFullVault()" class="animate-soft-bounce group flex items-center gap-3 bg-black text-white px-6 py-4 rounded-full text-[10px] font-semibold tracking-widest uppercase hover:scale-105 transition-all mb-1">
+                    Download Full Vault
+                    <span class="material-symbols-outlined text-sm group-hover:translate-y-1 transition-transform">download</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section id="blueprint-section" class="reveal mt-32 border-t border-border-beige pt-20">
+        <div class="mb-20">
+            <h2 class="text-5xl font-serif font-normal tracking-tighter text-primary">The Blueprints.</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
+            <div class="space-y-8 group">
+                <div class="h-px bg-border-beige w-full group-hover:bg-primary transition-all duration-700"></div>
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-serif font-normal tracking-tighter text-primary group-hover:italic transition-all">01. The Human Algorithm</h3>
+                    <p class="text-warm-grey text-sm font-normal leading-relaxed">How to make a brand feel like a real person in a world full of robotic AI content.</p>
+                    <button onclick="triggerDownload('The Human Algorithm')" class="border-b border-primary/20 hover:border-primary pb-1 text-[10px] font-semibold tracking-widest text-primary uppercase transition-all inline-flex items-center gap-2">
+                        Download <span class="material-symbols-outlined text-[14px]">south</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="locked-box-1" class="locked-item space-y-8 group opacity-40 grayscale">
+                <div class="h-px bg-border-beige w-full group-hover:bg-primary transition-all duration-700"></div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-sm lock-icon">lock</span>
+                        <h3 class="text-2xl font-serif font-normal tracking-tighter title-text text-warm-grey group-hover:italic transition-all">02. The Art of Presence</h3>
+                    </div>
+                    <p class="text-warm-grey text-sm font-normal leading-relaxed">My framework for building a brand that people actually remember, long after they've left the page.</p>
+                    <div class="download-reveal">
+                        <button onclick="triggerDownload('The Art of Presence')" class="border-b border-primary/20 hover:border-primary pb-1 text-[10px] font-semibold tracking-widest text-primary uppercase transition-all inline-flex items-center gap-2">
+                            Download <span class="material-symbols-outlined text-[14px]">south</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="locked-box-2" class="locked-item space-y-8 group opacity-40 grayscale">
+                <div class="h-px bg-border-beige w-full group-hover:bg-primary transition-all duration-700"></div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined text-sm lock-icon">lock</span>
+                        <h3 class="text-2xl font-serif font-normal tracking-tighter title-text text-warm-grey group-hover:italic transition-all">03. The Quiet Growth System</h3>
+                    </div>
+                    <p class="text-warm-grey text-sm font-normal leading-relaxed">A sustainable system for evolving a brand through storytelling, community, and trust.</p>
+                    <div class="download-reveal">
+                        <button onclick="triggerDownload('The Quiet Growth System')" class="border-b border-primary/20 hover:border-primary pb-1 text-[10px] font-semibold tracking-widest text-primary uppercase transition-all inline-flex items-center gap-2">
+                            Download <span class="material-symbols-outlined text-[14px]">south</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-48 pt-12 border-t border-border-beige/50 flex flex-col items-start gap-6">
+        <div class="font-serif text-2xl tracking-wider text-black opacity-90">Lovisa Celander</div>
+    </footer>
+</main>
+
+<script>
+    let vaultUnlocked = false;
+
+    // Spotlight logic
+    const spotlightArea = document.getElementById('spotlight-area');
+    const spotlightOverlay = spotlightArea.querySelector('.spotlight-overlay');
+
+    spotlightArea.addEventListener('mousemove', (e) => {
+        const rect = spotlightArea.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        spotlightOverlay.style.clipPath = `circle(100px at ${x}% ${y}%)`;
+    });
+
+    spotlightArea.addEventListener('mouseleave', () => {
+        spotlightOverlay.style.clipPath = `circle(0% at 0% 0%)`;
+    });
+
+    // Jump to email function
+    function jumpToEmail() {
+        const emailInput = document.getElementById('user-email');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Ge inputfältet fokus och en visuell nudge efter scroll
+        setTimeout(() => {
+            emailInput.focus();
+            emailInput.classList.add('nudge-active');
+            setTimeout(() => emailInput.classList.remove('nudge-active'), 1200);
+        }, 600);
+    }
+
+    // Scroll tracking
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('parallax-header');
+        header.style.transform = `translateY(${window.pageYOffset * 0.1}px)`;
+
+        const scrollPercent = (window.innerHeight + window.scrollY) / document.body.offsetHeight;
+        const scrollToast = document.getElementById('scroll-toast');
+        
+        if (scrollPercent > 0.8 && !vaultUnlocked) {
+            scrollToast.classList.add('show');
+        } else {
+            scrollToast.classList.remove('show');
+        }
+    });
+
+    const btnContainer = document.getElementById('btn-container');
+    const btn = document.getElementById('vault-button');
+    btnContainer.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btnContainer.addEventListener('mouseleave', () => btn.style.transform = `translate(0px, 0px)`);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    observer.observe(document.getElementById('blueprint-section'));
+
+    function downloadFullVault() {
+        triggerDownload('Full Strategic Vault');
+    }
+
+    function handleVaultSubmit(event) {
+        event.preventDefault();
+        vaultUnlocked = true;
+        document.getElementById('scroll-toast').classList.remove('show');
+
+        const button = document.getElementById('vault-button');
+        button.innerText = "AUTHENTICATING...";
+        button.disabled = true;
+        
+        setTimeout(() => {
+            document.getElementById('vault-form').style.display = 'none';
+            document.getElementById('success-message').classList.add('visible');
+            
+            const lockedBoxes = [document.getElementById('locked-box-1'), document.getElementById('locked-box-2')];
+            lockedBoxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.classList.add('unlocked');
+                    box.classList.remove('grayscale');
+                    box.querySelector('.lock-icon').innerText = 'lock_open';
+                    box.querySelector('.title-text').style.color = '#4b4637';
+                }, index * 250);
+            });
+            
+            confetti({ particleCount: 180, spread: 80, origin: { y: 0.7 }, colors: ['#4b4637', '#e6dfd1', '#ffffff'] });
+        }, 1400);
+    }
+
+    function triggerDownload(fileName) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-text').innerText = "Transmission Complete";
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+</script>
+
+</body>
+</html>

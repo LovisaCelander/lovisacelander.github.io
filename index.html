@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,22 +8,19 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NXQ526ZN');
   </script>
-  <!-- End Google Tag Manager -->
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovisa Celander</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-main: #f6f1ed;
-      --bg-section: #ede4da;
-      --text-main: #1f1f1f;
-      --text-soft: #6f665b;
-      --white: #ffffff;
+      --bg-main: #fdf8f3;       /* original beige bakgrund */
+      --card-bg: #fffefc;       /* ljus beige kort */
+      --card-hover-bg: #e6dfd1; /* mörkare beige vid hover */
+      --text-main: #4b4637;     /* mörk text */
+      --text-soft: #7a6f57;     /* mjuk text */
     }
 
     body {
@@ -32,40 +28,42 @@
       background: var(--bg-main);
       color: var(--text-main);
       font-family: 'Montserrat', sans-serif;
+      padding-top: 200px; /* plats för header */
     }
 
-    /* ===== STICKY HEADER ===== */
+    /* ===== HEADER ===== */
     .header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 10;
       text-align: center;
-      padding: 100px 20px 40px;
-      background: linear-gradient(
-        to bottom,
-        rgba(246,241,237,0.95),
-        rgba(246,241,237,0.85),
-        rgba(246,241,237,0)
-      );
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      padding: 60px 20px 20px;
+      background: var(--bg-main);
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
     .header.hidden {
+      transform: translateY(-120%);
       opacity: 0;
-      transform: translateY(-40px);
       pointer-events: none;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: 4.6rem;
-      font-weight: 400;
       margin: 0;
       letter-spacing: 2px;
+      color: var(--text-main);
     }
 
     nav {
-      margin-top: 35px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -75,62 +73,61 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin: 0 18px;
-      transition: opacity 0.3s ease;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      opacity: 0.6;
-    }
-
-    /* ===== SECTION ===== */
-    .folders-cloud {
-      max-width: 1200px;
-      margin: 160px auto;
-      padding: 120px 40px;
-      background: var(--bg-section);
-      border-radius: 70px;
-    }
-
-    .folders {
-      display: flex;
-      justify-content: center;
-      gap: 80px;
-      flex-wrap: wrap;
+      color: var(--text-main);
     }
 
     /* ===== CARDS ===== */
+    .folders-cloud {
+      max-width: 1300px;
+      margin: 100px auto 0;
+      padding: 0 40px 120px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
     .folder {
-      background: var(--white);
-      width: 220px;
+      background: var(--card-bg);
+      width: 200px;
       padding: 48px 20px;
       border-radius: 38px;
       text-align: center;
       text-decoration: none;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-      transform: scale(0.85);
+      color: var(--text-main);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      transform: scale(0.9);
       opacity: 0;
-      transition:
-        transform 0.8s cubic-bezier(.19,1,.22,1),
-        opacity 0.6s ease,
-        box-shadow 0.6s ease;
+    }
+
+    .folder.vault-card {
+      background: #1a1a17;
+      color: #fdf8f3;
     }
 
     .folder.in-view {
       transform: scale(1);
       opacity: 1;
-      box-shadow: 0 35px 70px rgba(0,0,0,0.2);
     }
 
     .folder:hover {
+      background: var(--card-hover-bg);
       transform: scale(1.05);
+      box-shadow: 0 35px 70px rgba(0,0,0,0.2);
+      cursor: pointer;
     }
 
-    .folder-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.65rem;
-      letter-spacing: 1px;
-      margin: 0;
-      color: var(--text-main);
+    .folder.vault-card:hover {
+      background: #000000;
     }
 
     /* ===== CONTACT ===== */
@@ -142,17 +139,18 @@
     #contact h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2.4rem;
-      font-weight: 400;
       margin-bottom: 34px;
+      color: var(--text-main);
     }
 
     .contact-box {
-      background: var(--white);
+      background: var(--card-bg);
       max-width: 520px;
       margin: 0 auto;
       padding: 50px;
       border-radius: 40px;
       box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+      color: var(--text-main);
     }
 
     .contact-box p {
@@ -161,7 +159,7 @@
     }
 
     .contact-box a {
-      color: var(--text-soft);
+      color: var(--text-main);
       font-weight: 600;
       text-decoration: none;
     }
@@ -174,95 +172,77 @@
       h1 {
         font-size: 3.4rem;
       }
+
+      .folders-cloud {
+        gap: 20px;
+      }
+      
+      .folder {
+        width: 160px;
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-  <!-- HEADER -->
   <header class="header" id="siteHeader">
     <h1>Lovisa Celander</h1>
     <nav>
       <a href="om-mig.html">Om mig</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="#cv">CV</a>
-      <a href="#projekt">Projekt</a>
       <a href="#contact">Kontakt</a>
     </nav>
   </header>
 
-  <!-- CARDS -->
   <section class="folders-cloud">
-    <div class="folders">
-      <a href="#cv" class="folder">
-        <p class="folder-title">CV</p>
-      </a>
-
-      <a href="portfolio.html" class="folder">
-        <p class="folder-title">Portfolio</p>
-      </a>
-
-      <a href="#projekt" class="folder">
-        <p class="folder-title">Projekt</p>
-      </a>
-    </div>
+    <a href="#cv" class="folder">CV</a>
+    <a href="portfolio.html" class="folder">Portfolio</a>
+    <a href="#projekt" class="folder">Projekt</a>
+    <a href="lead-magnet.html" class="folder vault-card">Steal My <br><span class="italic">Thinking.</span></a>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
-    <h2>Let’s connect</h2>
+    <h2>Let’s connect.</h2>
     <div class="contact-box">
-      <p></p>
+      <p>For collaborations, inquiries, or just to say hi.</p>
       <p style="margin-top:18px;">
         <a href="mailto:celanderlovisa@gmail.com">celanderlovisa@gmail.com</a>
       </p>
     </div>
   </section>
 
-  <!-- SCROLL EFFECTS -->
   <script>
-    /* Hide header on scroll */
     const header = document.getElementById('siteHeader');
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
       const currentScroll = window.scrollY;
-      if (currentScroll > 120) {
+
+      if (currentScroll > lastScroll && currentScroll > 120) {
         header.classList.add('hidden');
-      } else {
+      } else if (currentScroll < lastScroll) {
         header.classList.remove('hidden');
       }
+
       lastScroll = currentScroll;
     });
 
-    /* Cards animation */
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.2 });
 
-    document.querySelectorAll('.folder').forEach(card => {
-      observer.observe(card);
-    });
+    document.querySelectorAll('.folder').forEach(card => observer.observe(card));
   </script>
-
 </body>
 </html>
-
-
-
 
 
