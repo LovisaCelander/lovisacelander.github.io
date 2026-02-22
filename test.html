@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Lovisa Celander — Strateg & Kreatör</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fdf8f3; font-family: 'Montserrat', sans-serif; color: #1a1a17; padding: 60px; text-align: center; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 40px; }
+        .mood-box { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border: 1px solid #e6dfd1; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .buttons { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        button { padding: 10px 20px; border: 1px solid #1a1a17; background: transparent; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; font-weight: 600; }
+        button:hover { background: #1a1a17; color: white; }
+        #api-result { margin-top: 20px; font-style: italic; color: #7a6f57; min-height: 50px; }
+        .api-tag { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.4; display: block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>Lovisa.</h2>
+
+    <div class="mood-box">
+        <p>Välj din vibe för dagens kreativa insikt:</p>
+        <div class="buttons">
+            <button onclick="getAdvice('pop')">Energi</button>
+            <button onclick="getAdvice('klassisk')">Fokus</button>
+            <button onclick="getAdvice('80s')">Nostalgi</button>
+        </div>
+        
+        <div id="api-result">Klicka på en knapp för att anropa API:et...</div>
+        <span class="api-tag">Powered by AdviceSlip REST API</span>
+    </div>
+
+    <script>
+        // Detta är ett riktigt API-anrop som hämtar slumpmässiga råd/insikter
+        async function getAdvice(vibe) {
+            const resultDiv = document.getElementById('api-result');
+            resultDiv.innerText = "Anropar API...";
+
+            try {
+                // Vi använder AdviceSlip API - det är gratis, snabbt och tillåter alla anrop
+                const response = await fetch('https://api.adviceslip.com/advice');
+                const data = await response.json();
+                
+                let prefix = "";
+                if(vibe === 'pop') prefix = "⚡ Energi-boost: ";
+                if(vibe === 'klassisk') prefix = "🧠 Fokus-insikt: ";
+                if(vibe === '80s') prefix = "📻 Nostalgi-tips: ";
+
+                resultDiv.innerText = prefix + data.slip.advice;
+            } catch (error) {
+                resultDiv.innerText = "Kunde inte nå API:et just nu, men fortsätt vara kreativ!";
+            }
+        }
+    </script>
+</body>
+</html>
