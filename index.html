@@ -6,9 +6,8 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NXQ526ZN');
+    })(window,document,'script','dataLayer','GTM-NNFH7PJP');
   </script>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovisa Celander — Strateg & Kreatör</title>
@@ -119,8 +118,8 @@
 </head>
 
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNFH7PJP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div id="mood-popup-wrapper">
     <div class="mood-popup-box">
       <button onclick="closePopup()" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; opacity:0.3;">×</button>
@@ -214,7 +213,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // API FÖR CITAT (Utan refresh)
+    // API FÖR CITAT
     async function fetchDailyQuote() {
         const quoteEl = document.getElementById('philosophy-quote');
         const authorEl = document.getElementById('quote-author');
@@ -266,6 +265,7 @@
       document.getElementById('player-art').src = t.artworkUrl100.replace('100x100bb', '400x400bb');
       document.getElementById('player-title').innerText = t.trackName;
       document.getElementById('player-artist').innerText = t.artistName;
+      // FIXAD SPOTIFY LÄNK
       document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(t.trackName + ' ' + t.artistName)}`;
       
       document.getElementById('like-btn').classList.remove('liked');
