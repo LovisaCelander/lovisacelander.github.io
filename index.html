@@ -164,7 +164,10 @@
   </div>
 
   <header class="header">
-    <nav><a href="om-mig.html">Om mig</a><a href="#contact">Kontakt</a></nav>
+    <nav>
+      <a href="om-mig.html" id="omMigKnapp">Om mig</a>
+      <a href="#contact" id="kontaktKnapp">Kontakt</a>
+    </nav>
   </header>
 
   <main>
@@ -174,9 +177,15 @@
     </section>
 
     <section class="folders-grid">
-      <a href="#cv" class="folder reveal"><div class="folder-num">01 / Experience</div><span>CV</span></a>
-      <a href="portfolio.html" class="folder reveal"><div class="folder-num">02 / Work</div><span>Portfolio</span></a>
-      <a href="#projekt" class="folder reveal"><div class="folder-num">03 / Case Studies</div><span>Utvalda Projekt</span></a>
+      <a href="#cv" class="folder reveal" id="cvKnapp">
+        <div class="folder-num">01 / Experience</div><span>CV</span>
+      </a>
+      <a href="portfolio.html" class="folder reveal" id="portfolioKnapp">
+        <div class="folder-num">02 / Work</div><span>Portfolio</span>
+      </a>
+      <a href="#projekt" class="folder reveal" id="projektKnapp">
+        <div class="folder-num">03 / Case Studies</div><span>Utvalda Projekt</span>
+      </a>
       <a href="lead-magnet.html" class="folder vault-card reveal" onclick="transitionOut(event, this.href)">
         <div class="folder-num" style="opacity: 0.3;">04 / Insights</div>
         <span>Steal My <br>Thinking.</span>
@@ -203,17 +212,56 @@
 
     <section id="contact" class="contact-footer reveal">
       <h3>Let´s Connect</h3>
-      <a href="mailto:celanderlovisa@gmail.com" class="contact-link">celanderlovisa@gmail.com</a>
+      <a href="mailto:celanderlovisa@gmail.com" class="contact-link" id="emailKnapp">celanderlovisa@gmail.com</a>
     </section>
   </main>
 
   <script>
+    // --- DITT GTM SKRIPT START ---
+    window.dataLayer = window.dataLayer || [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      function registreraNavigationsKlick(id, text) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.addEventListener("click", function (e) {
+            e.preventDefault(); 
+
+            const linkUrl = element.href;
+            const eventData = {
+              event: "navigation_click", // Namnet på din trigger i GTM
+              link_id: id,
+              link_text: text,
+              link_url: linkUrl,
+              timestamp: new Date().toISOString()
+            };
+
+            window.dataLayer.push(eventData);
+            console.log("Event skickat till dataLayer:", eventData);
+
+            setTimeout(function () {
+              window.location.href = linkUrl;
+            }, 200);
+          });
+        }
+      }
+
+      // Aktiverar spårning på dina ID:n
+      registreraNavigationsKlick("omMigKnapp", "Om mig");
+      registreraNavigationsKlick("kontaktKnapp", "Kontakt");
+      registreraNavigationsKlick("portfolioKnapp", "Portfolio");
+      registreraNavigationsKlick("cvKnapp", "CV");
+      registreraNavigationsKlick("projektKnapp", "Projekt");
+      registreraNavigationsKlick("emailKnapp", "Email");
+    });
+    // --- DITT GTM SKRIPT SLUT ---
+
+    // Resten av din sid-logik (Citat, Musik, Reveal)
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // API FÖR CITAT
     async function fetchDailyQuote() {
         const quoteEl = document.getElementById('philosophy-quote');
         const authorEl = document.getElementById('quote-author');
@@ -265,7 +313,6 @@
       document.getElementById('player-art').src = t.artworkUrl100.replace('100x100bb', '400x400bb');
       document.getElementById('player-title').innerText = t.trackName;
       document.getElementById('player-artist').innerText = t.artistName;
-      // FIXAD SPOTIFY LÄNK
       document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(t.trackName + ' ' + t.artistName)}`;
       
       document.getElementById('like-btn').classList.remove('liked');
@@ -302,15 +349,9 @@
     function toggleMinimize(e) { e.stopPropagation(); document.getElementById('mini-player').classList.add('minimized'); }
     function expandPlayer() { document.getElementById('mini-player').classList.remove('minimized'); }
     function togglePlay(e) { if(e) e.stopPropagation(); audio.paused ? audio.play() : audio.pause(); document.getElementById('play-pause-icon').innerText = audio.paused ? "►" : "II"; }
-    function updateVolume(v) { audio.volume = v; }
     function seek(e) { e.stopPropagation(); const r = e.currentTarget.getBoundingClientRect(); audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration; }
     audio.ontimeupdate = () => {
         document.getElementById('progress-fill').style.width = (audio.currentTime / audio.duration) * 100 + '%';
-        if (audio.duration - audio.currentTime < 1.5 && !audio.dataset.switching) {
-            audio.dataset.switching = "true";
-            nextTrack();
-            setTimeout(() => { delete audio.dataset.switching; }, 2000);
-        }
     };
     function nextTrack(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex + 1) % playlist.length; loadTrack(currentIndex); }
     function prevTrack(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex - 1 + playlist.length) % playlist.length; loadTrack(currentIndex); }
