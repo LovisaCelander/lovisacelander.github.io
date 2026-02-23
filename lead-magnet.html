@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NNFH7PJP');</script>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Steal My Thinking — Lovisa Celander</title>
@@ -103,11 +108,9 @@
         }
         #toast.show, #scroll-toast.show { transform: translateY(0); }
         
-        /* Klickbar pop-up */
         #scroll-toast { cursor: pointer; border: 1px solid transparent; }
         #scroll-toast:hover { background: #000; border-color: rgba(255,255,255,0.1); }
 
-        /* Input highlight animation */
         @keyframes input-nudge {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.02); border-color: #4b4637; }
@@ -123,8 +126,9 @@
 </head>
 
 <body>
-
-<div id="toast"><span id="toast-text">Transmission Complete</span></div>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNFH7PJP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="toast"><span id="toast-text">Transmission Complete</span></div>
 
 <div id="scroll-toast" onclick="jumpToEmail()" class="flex items-center gap-3">
     <span class="material-symbols-outlined text-sm">lock_open</span>
@@ -243,9 +247,57 @@
 </main>
 
 <script>
+    // --- GTM SPÅRNING LOGIK START ---
+    window.dataLayer = window.dataLayer || [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Spåra "Back to landing page"
+        const backLink = document.querySelector('nav a');
+        if (backLink) {
+            backLink.addEventListener("click", function() {
+                window.dataLayer.push({
+                    event: "navigation_click",
+                    link_id: "back_to_landing",
+                    link_text: "Back to landing page"
+                });
+            });
+        }
+
+        // Spåra formulär-skick
+        const vaultForm = document.getElementById('vault-form');
+        if (vaultForm) {
+            vaultForm.addEventListener("submit", function() {
+                window.dataLayer.push({
+                    event: "navigation_click",
+                    link_id: "vault_unlock",
+                    link_text: "Unlocked the Vault"
+                });
+            });
+        }
+
+        // Intercept för nedladdningar (Blueprints)
+        const originalTriggerDownload = window.triggerDownload;
+        window.triggerDownload = function(fileName) {
+            // Skicka till GTM först
+            window.dataLayer.push({
+                event: "navigation_click",
+                link_id: "download_blueprint",
+                link_text: "Download: " + fileName
+            });
+
+            // Visa toast-meddelande
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = "Transmission Complete";
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+            
+            console.log("Spårar nedladdning: " + fileName);
+        };
+    });
+    // --- GTM SPÅRNING LOGIK SLUT ---
+
     let vaultUnlocked = false;
 
-    // Spotlight logic
     const spotlightArea = document.getElementById('spotlight-area');
     const spotlightOverlay = spotlightArea.querySelector('.spotlight-overlay');
 
@@ -260,12 +312,9 @@
         spotlightOverlay.style.clipPath = `circle(0% at 0% 0%)`;
     });
 
-    // Jump to email function
     function jumpToEmail() {
         const emailInput = document.getElementById('user-email');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Ge inputfältet fokus och en visuell nudge efter scroll
         setTimeout(() => {
             emailInput.focus();
             emailInput.classList.add('nudge-active');
@@ -273,14 +322,11 @@
         }, 600);
     }
 
-    // Scroll tracking
     window.addEventListener('scroll', () => {
         const header = document.getElementById('parallax-header');
         header.style.transform = `translateY(${window.pageYOffset * 0.1}px)`;
-
         const scrollPercent = (window.innerHeight + window.scrollY) / document.body.offsetHeight;
         const scrollToast = document.getElementById('scroll-toast');
-        
         if (scrollPercent > 0.8 && !vaultUnlocked) {
             scrollToast.classList.add('show');
         } else {
@@ -311,15 +357,12 @@
         event.preventDefault();
         vaultUnlocked = true;
         document.getElementById('scroll-toast').classList.remove('show');
-
         const button = document.getElementById('vault-button');
         button.innerText = "AUTHENTICATING...";
         button.disabled = true;
-        
         setTimeout(() => {
             document.getElementById('vault-form').style.display = 'none';
             document.getElementById('success-message').classList.add('visible');
-            
             const lockedBoxes = [document.getElementById('locked-box-1'), document.getElementById('locked-box-2')];
             lockedBoxes.forEach((box, index) => {
                 setTimeout(() => {
@@ -329,17 +372,12 @@
                     box.querySelector('.title-text').style.color = '#4b4637';
                 }, index * 250);
             });
-            
             confetti({ particleCount: 180, spread: 80, origin: { y: 0.7 }, colors: ['#4b4637', '#e6dfd1', '#ffffff'] });
         }, 1400);
     }
 
-    function triggerDownload(fileName) {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-text').innerText = "Transmission Complete";
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-    }
+    // placeholder funktion (behövs då spårningsskriptet definierar om den ovan)
+    function triggerDownload(fileName) {}
 </script>
 
 </body>
