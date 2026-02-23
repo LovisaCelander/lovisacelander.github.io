@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NXQ526ZN');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NNFH7PJP');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Om mig</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Open+Sans&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
   <style>
-
     .om-mig-text {
-  background-color: rgba(255, 255, 255, 0.8); /* Lätt vit bakgrund */
-  padding: 15px;          /* Lite luft runt texten */
-  border-radius: 8px;     /* Rundade hörn */
-  line-height: 1.6;       /* Ökat radavstånd för bättre läsbarhet */
-  font-size: 18px;        /* Något större text */
-  color: #333;            /* Mörkgrå textfärg */
-  text-align: center;     /* Centrerar texten */
-}
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      line-height: 1.6;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
 
     body {
       background-color: #f1f0eb;
@@ -42,7 +38,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 50px 20px;
     }
 
-    /* Rubrik container */
     .title {
       display: flex;
       gap: 0.1em;
@@ -51,7 +46,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-bottom: 20px;
     }
 
-    /* Glow-effekt på hover */
     .title:hover {
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       transform: translateY(-2px);
@@ -86,18 +80,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<h1 class="title">Om mig</h1>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNFH7PJP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <h1 class="title">Om mig</h1>
 
-<img src="skane.JPG" alt="Bild på mig i Skåne" class="profilbild">
+  <img src="skane.JPG" alt="Bild på mig i Skåne" class="profilbild">
 
-<p>
-  Hej! Jag heter Lovisa Celander.
-</p>
-  <a href="index.html">← Tillbaka till startsidan</a>
+  <p>
+    Hej! Jag heter Lovisa Celander.
+  </p>
+
+  <a href="index.html" id="backToHome">← Tillbaka till startsidan</a>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const backBtn = document.getElementById("backToHome");
+      if (backBtn) {
+        backBtn.addEventListener("click", function (e) {
+          window.dataLayer.push({
+            event: "navigation_click",
+            link_id: "backToHome",
+            link_text: "Tillbaka till start"
+          });
+          console.log("Navigation klickad: Tillbaka till start");
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
