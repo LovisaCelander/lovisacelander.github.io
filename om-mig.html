@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,92 +8,178 @@
   })(window,document,'script','dataLayer','GTM-NNFH7PJP');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Om mig</title>
+  <title>About Me — Lovisa Celander</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Open+Sans&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
 
   <style>
-    .om-mig-text {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 15px;
-      border-radius: 8px;
-      line-height: 1.6;
-      font-size: 18px;
-      color: #333;
-      text-align: center;
+    :root {
+      --bg-main: #fdf8f3;       
+      --text-main: #1a1a17;     
+      --text-soft: #7a6f57;     
+      --border-color: #e6dfd1;
     }
+
+    * { box-sizing: border-box; }
+    ::selection { background: #1a1a17; color: #fff; }
 
     body {
-      background-color: #f1f0eb;
-      font-family: 'Open Sans', sans-serif;
       margin: 0;
-      padding: 0;
-      color: #000;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 50px 20px;
     }
 
-    .title {
-      display: flex;
-      gap: 0.1em;
-      font-family: 'Pinyon Script', cursive;
-      font-size: 3em;
-      margin-bottom: 20px;
+    body::before {
+      content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.03; pointer-events: none; z-index: 50;
     }
 
-    .title:hover {
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transform: translateY(-2px);
-      transition: all 0.3s ease-in-out;
+    .nav-header {
+      padding: 60px 60px 20px;
     }
 
-    p {
-      max-width: 600px;
-      font-size: 1.1em;
-      line-height: 1.6;
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    a {
-      margin-top: 40px;
-      padding: 12px 24px;
-      background-color: #000;
-      color: #f6f5f0;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 1em;
+    .back-link {
       text-decoration: none;
-      border-radius: 50px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      color: var(--text-main);
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.3s ease;
     }
 
-    a:hover {
-      background-color: #333;
-      transform: scale(1.05);
+    .back-link:hover { opacity: 0.5; }
+
+    .content {
+      padding: 40px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .profilbild {
+      width: 100%;
+      max-width: 500px;
+      filter: sepia(5%) contrast(102%);
+      border: 1px solid var(--border-color);
+      display: block;
+    }
+
+    .text-side h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 400;
+      margin: 0 0 20px 0;
+      letter-spacing: -2px;
+    }
+
+    .text-side .subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .text-side p {
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 550px;
+      font-weight: 300;
+      color: var(--text-main);
+      margin-bottom: 25px;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .content { grid-template-columns: 1fr; gap: 40px; padding: 40px 30px; }
+      .nav-header { padding: 40px 30px; }
     }
   </style>
 </head>
+
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNFH7PJP"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <h1 class="title">Om mig</h1>
 
-  <img src="skane.JPG" alt="Bild på mig i Skåne" class="profilbild">
+  <header class="nav-header">
+    <a href="index.html" class="back-link" id="backToHome">
+      <span class="material-symbols-outlined" style="font-size: 14px;">arrow_back</span>
+      Back to Home
+    </a>
+  </header>
 
-  <p>
-    Hej! Jag heter Lovisa Celander.
-  </p>
+  <main class="content">
+    <div class="image-container reveal">
+      <img src="skane.JPG" alt="Lovisa Celander" class="profilbild">
+    </div>
 
-  <a href="index.html" id="backToHome">← Tillbaka till startsidan</a>
+    <div class="text-side reveal">
+      <span class="subtitle">Personal Portrait</span>
+      <h1>About Me.</h1>
+      
+      <p>
+        Hi! I’m <span class="highlight">Lovisa Celander</span>, a 23-year-old Growth Marketing student based in Stockholm, Sweden. 
+        I’m currently studying the Growth Marketing program at <span class="highlight">Berghs School of Communication</span>, 
+        where I’m learning how to help brands grow through strategy, creativity, and digital marketing.
+      </p>
+
+      <p>
+        Alongside my studies, I run my own brand <span class="highlight">Ophelia</span>, where I design and sew handmade products like toiletry bags and laptop cases. 
+        Through Ophelia, I’ve discovered my passion for storytelling, brand identity, and creating with intention—values I bring into every project I work on.
+      </p>
+
+      <p>
+        I enjoy exploring how analysis, numbers, and strategy can work together with content and creativity to make a brand grow. 
+        I’m looking for opportunities where I can contribute, learn, and apply both my analytical and creative skills to drive meaningful growth.
+      </p>
+    </div>
+  </main>
 
   <script>
     window.dataLayer = window.dataLayer || [];
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { 
+        if (entry.isIntersecting) entry.target.classList.add('in-view'); 
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     document.addEventListener("DOMContentLoaded", function () {
       const backBtn = document.getElementById("backToHome");
@@ -102,14 +188,12 @@
           window.dataLayer.push({
             event: "navigation_click",
             link_id: "backToHome",
-            link_text: "Tillbaka till start"
+            link_text: "Back to Home"
           });
-          console.log("Navigation klickad: Tillbaka till start");
         });
       }
     });
   </script>
-
 </body>
 </html>
 

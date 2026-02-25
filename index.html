@@ -197,7 +197,6 @@
     <h3 style="font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; font-weight: 700; opacity: 0.8;">What I'm up to right now...</h3>
     
     <div class="rotation-grid">
-        <div class="rotation-grid">
             <div class="rotation-item">
                 <span>Reading</span>
                 <p>Jane Eyre</p>
@@ -207,7 +206,7 @@
                 <p>Interstellar</p>
             </div>
             <div class="rotation-item">
-                <span>Daily Insight</span>
+                <span>Daily Quote</span>
                 <p id="philosophy-quote">"Thinking..."</p>
                 <div id="quote-author"></div>
             </div>
@@ -276,6 +275,7 @@
             
             quoteEl.innerText = `"${data.slip.advice}"`;
     
+          
             authorEl.style.opacity = "0.4";
             authorEl.style.fontSize = "0.6rem";
             authorEl.style.marginTop = "10px";
@@ -308,20 +308,45 @@
 
     async function startMusic(q, type) {
       let qList = [];
+      let results = [];
+
       if(type === 'Lovisa') qList = ['Empire of the Sun', 'Gracie Abrams', 'Taylor Swift', 'Harry Styles'];
       if(type === 'Pop') qList = ['Justin Bieber', 'sombr', 'Zara Larsson', 'Olivia Rodrigo', 'The Kid LAROI'];
-      if(type === 'Oldies') qList = ['Michael Jackson', 'Madonna', 'Queen', 'ABBA'];
-      if(type === 'Classical') qList = ['Vivaldi Four Seasons Orchestral', 'Beethoven Symphony', 'Mozart Orchestral'];
-
-      const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
-      playlist = res.flatMap(d => d.results).sort(() => Math.random() - 0.5);
       
+      // FILTRERAD SÖKNING FÖR OLDIES (Whitney, Michael, Amy)
+      if(type === 'Oldies') {
+        qList = ['Whitney Houston', 'Michael Jackson', 'Amy Winehouse', 'Elvis Presley', 'Queen', 'ABBA'];
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
+        
+        // Filtrera bort allt släppt efter år 2000
+        playlist = res.flatMap(d => d.results).filter(track => {
+            const year = new Date(track.releaseDate).getFullYear();
+            return year <= 2000;
+        });
+      } 
+      
+      // SPECIFIK SÖKNING FÖR CLASSICAL (Ingen Zara Larsson!)
+      else if(type === 'Classical') {
+        // Vi söker efter specifika stycken och kompositörer istället för bara artistnamn
+        qList = ['Claude Debussy Clair de lune', 'Chopin Nocturne', 'Bach Cello Suite No 1', 'Ludovico Einaudi Nuvole Bianche', 'Erik Satie Gymnopédie'];
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=5&country=SE`).then(r => r.json())));
+        playlist = res.flatMap(d => d.results);
+      }
+      
+      // Standard sökning för de andra kategorierna
+      else {
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
+        playlist = res.flatMap(d => d.results);
+      }
+
+      playlist.sort(() => Math.random() - 0.5);
       currentIndex = 0; loadTrack(0); closePopup();
       document.getElementById('mini-player').classList.add('active');
     }
 
     function loadTrack(i) {
       const t = playlist[i];
+      if(!t) return;
       document.getElementById('player-art').src = t.artworkUrl100.replace('100x100bb', '400x400bb');
       document.getElementById('player-title').innerText = t.trackName;
       document.getElementById('player-artist').innerText = t.artistName;

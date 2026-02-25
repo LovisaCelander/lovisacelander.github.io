@@ -31,7 +31,6 @@
       margin: 0; background: var(--bg-main); color: var(--text-main);
       font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased;
       transition: background 1.2s ease, opacity 1s ease;
-      overflow-x: hidden;
     }
 
     body::before {
@@ -45,53 +44,10 @@
     nav a { text-decoration: none; color: var(--text-main); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-left: 40px; font-weight: 600; transition: opacity 0.3s ease; }
     nav a:hover { opacity: 0.5; }
 
-    /* HERO & MONTAGE CONTAINER */
-    .hero-section { 
-      padding: 80px 60px 60px; 
-      max-width: 1400px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: flex-start;
-      position: relative;
-    }
-    
+    /* HERO */
+    .hero { padding: 80px 60px 60px; max-width: 1400px; }
     .hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 12vw, 10rem); line-height: 0.8; font-weight: 400; margin: 0; letter-spacing: -4px; }
     .hero p { margin-top: 30px; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; color: var(--text-soft); }
-    
-    .hero-bio { 
-      margin-top: 20px; 
-      font-size: 0.9rem; 
-      line-height: 1.6; 
-      max-width: 450px; 
-      font-style: italic; 
-      color: var(--text-soft); 
-      font-weight: 400; 
-    }
-
-    /* VIDEO MONTAGE PLACEHOLDERS */
-    .montage-container {
-      position: relative;
-      width: 400px;
-      height: 350px;
-      margin-right: 40px;
-    }
-
-    .montage-box {
-      position: absolute;
-      background: white;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      animation: float 6s ease-in-out infinite;
-      overflow: hidden;
-    }
-
-    .m-box-1 { width: 220px; height: 300px; top: 0; right: 0; z-index: 2; }
-    .m-box-2 { width: 160px; height: 160px; bottom: 20px; left: 0; z-index: 1; animation-delay: -3s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
 
     /* FOLDERS GRID */
     .folders-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 60px; max-width: 1400px; }
@@ -104,8 +60,7 @@
 
     /* CURRENT ROTATION */
     .rotation-section { padding: 80px 60px; border-top: 1px solid var(--border-color); max-width: 1400px; }
-    .up-to-title { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; font-weight: 700; opacity: 0.8; }
-    .rotation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+    .rotation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 30px; }
     .rotation-item span { font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; font-weight: 700; }
     .rotation-item p { font-family: 'Playfair Display'; font-size: 1.6rem; margin: 10px 0 0; font-style: italic; }
     #quote-author { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; opacity: 0.4; font-weight: 700; font-family: 'Montserrat'; font-style: normal; }
@@ -116,7 +71,12 @@
     .contact-link { font-size: 1.5rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--text-main); padding-bottom: 5px; transition: 0.3s; }
 
     /* MINI PLAYER */
-    #mini-player { position: fixed; bottom: 30px; left: 30px; width: 340px; background: #121212; color: white; padding: 20px; border-radius: 12px; z-index: 4500; transform: translateY(250%); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    #mini-player {
+      position: fixed; bottom: 30px; left: 30px; width: 340px;
+      background: #121212; color: white; padding: 20px;
+      border-radius: 12px; z-index: 4500; transform: translateY(250%);
+      transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
     #mini-player.active { transform: translateY(0); }
     #mini-player.minimized { width: 65px; height: 65px; padding: 0; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     #mini-player.minimized .player-ui { display: none; }
@@ -133,9 +93,17 @@
     .player-link:hover { opacity: 1; text-decoration: underline; }
 
     /* POPUP */
-    #mood-popup-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 26, 23, 0.4); display: flex; align-items: center; justify-content: center; z-index: 5000; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(8px); }
+    #mood-popup-wrapper {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(26, 26, 23, 0.4); display: flex; align-items: center; justify-content: center;
+      z-index: 5000; opacity: 0; visibility: hidden; transition: 0.5s; backdrop-filter: blur(8px);
+    }
     #mood-popup-wrapper.show { opacity: 1; visibility: visible; }
-    .mood-popup-box { background: #faf7f2; padding: 60px; border-radius: 2px; width: 90%; max-width: 550px; position: relative; text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.15); border: 1px solid var(--premium-gold); }
+    .mood-popup-box {
+      background: #faf7f2; padding: 60px; border-radius: 2px;
+      width: 90%; max-width: 550px; position: relative; text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.15); border: 1px solid var(--premium-gold);
+    }
     .mood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
     .mood-btn { padding: 25px; border: 1px solid #d4c5b9; background: white; font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; font-size: 0.75rem; font-weight: 600; transition: 0.3s; color: #6d5d51; }
     .mood-btn:hover { border-color: var(--text-main); color: var(--text-main); transform: translateY(-3px); }
@@ -203,19 +171,9 @@
   </header>
 
   <main>
-    <section class="hero-section reveal">
-      <div class="hero">
-        <h2>Lovisa <br>Celander.</h2>
-        <p>Growth Marketing</p>
-        <div class="hero-bio">
-            Digital strategist and creator dedicated to building intentional brands and seamless digital experiences.
-        </div>
-      </div>
-      
-      <div class="montage-container">
-        <div class="montage-box m-box-1"></div>
-        <div class="montage-box m-box-2"></div>
-      </div>
+    <section class="hero reveal">
+      <h2>Lovisa <br>Celander.</h2>
+      <p>Growth Marketing</p>
     </section>
 
     <section class="folders-grid">
@@ -235,8 +193,10 @@
     </section>
 
     <section class="rotation-section reveal">
-        <h3 class="up-to-title">What I'm up to right now...</h3>
-        <div class="rotation-grid">
+  
+    <h3 style="font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; font-weight: 700; opacity: 0.8;">What I'm up to right now...</h3>
+    
+    <div class="rotation-grid">
             <div class="rotation-item">
                 <span>Reading</span>
                 <p>Jane Eyre</p>
@@ -260,6 +220,7 @@
   </main>
 
   <script>
+    // --- DITT GTM SKRIPT START ---
     window.dataLayer = window.dataLayer || [];
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -268,19 +229,27 @@
         if (element) {
           element.addEventListener("click", function (e) {
             e.preventDefault(); 
+
             const linkUrl = element.href;
             const eventData = {
-              event: "navigation_click",
+              event: "navigation_click", // Namnet på din trigger i GTM
               link_id: id,
               link_text: text,
               link_url: linkUrl,
               timestamp: new Date().toISOString()
             };
+
             window.dataLayer.push(eventData);
-            setTimeout(function () { window.location.href = linkUrl; }, 200);
+            console.log("Event skickat till dataLayer:", eventData);
+
+            setTimeout(function () {
+              window.location.href = linkUrl;
+            }, 200);
           });
         }
       }
+
+      // Aktiverar spårning på dina ID:n
       registreraNavigationsKlick("omMigKnapp", "Om mig");
       registreraNavigationsKlick("kontaktKnapp", "Kontakt");
       registreraNavigationsKlick("portfolioKnapp", "Portfolio");
@@ -288,7 +257,9 @@
       registreraNavigationsKlick("projektKnapp", "Projekt");
       registreraNavigationsKlick("emailKnapp", "Email");
     });
+    // --- DITT GTM SKRIPT SLUT ---
 
+    // Resten av din sid-logik (Citat, Musik, Reveal)
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
     }, { threshold: 0.1 });
@@ -298,15 +269,20 @@
         const quoteEl = document.getElementById('philosophy-quote');
         const authorEl = document.getElementById('quote-author');
         try {
+            // Stabilt API för korta citat/råd
             const res = await fetch("https://api.adviceslip.com/advice");
             const data = await res.json();
+            
             quoteEl.innerText = `"${data.slip.advice}"`;
+    
             authorEl.innerText = "— DAILY INSIGHT";
             authorEl.style.opacity = "0.4";
             authorEl.style.fontSize = "0.6rem";
             authorEl.style.marginTop = "10px";
             authorEl.style.textTransform = "uppercase";
+            
         } catch (e) {
+            // Reserv om API:et skulle ligga nere
             quoteEl.innerText = '"Imagination is more important than knowledge."';
             authorEl.innerText = "— Albert Einstein";
         }
@@ -332,28 +308,62 @@
 
     async function startMusic(q, type) {
       let qList = [];
+      let results = [];
+
       if(type === 'Lovisa') qList = ['Empire of the Sun', 'Gracie Abrams', 'Taylor Swift', 'Harry Styles'];
       if(type === 'Pop') qList = ['Justin Bieber', 'sombr', 'Zara Larsson', 'Olivia Rodrigo', 'The Kid LAROI'];
-      if(type === 'Oldies') qList = ['Michael Jackson', 'Madonna', 'Queen', 'ABBA'];
-      if(type === 'Classical') qList = ['Vivaldi', 'Beethoven', 'Mozart'];
-      const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
-      playlist = res.flatMap(d => d.results).sort(() => Math.random() - 0.5);
+      
+      // FILTRERAD SÖKNING FÖR OLDIES (Whitney, Michael, Amy)
+      if(type === 'Oldies') {
+        qList = ['Whitney Houston', 'Michael Jackson', 'Amy Winehouse', 'Elvis Presley', 'Queen', 'ABBA'];
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
+        
+        // Filtrera bort allt släppt efter år 2000
+        playlist = res.flatMap(d => d.results).filter(track => {
+            const year = new Date(track.releaseDate).getFullYear();
+            return year <= 2000;
+        });
+      } 
+      
+      // SPECIFIK SÖKNING FÖR CLASSICAL (Ingen Zara Larsson!)
+      else if(type === 'Classical') {
+        // Vi söker efter specifika stycken och kompositörer istället för bara artistnamn
+        qList = ['Claude Debussy Clair de lune', 'Chopin Nocturne', 'Bach Cello Suite No 1', 'Ludovico Einaudi Nuvole Bianche', 'Erik Satie Gymnopédie'];
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=5&country=SE`).then(r => r.json())));
+        playlist = res.flatMap(d => d.results);
+      }
+      
+      // Standard sökning för de andra kategorierna
+      else {
+        const res = await Promise.all(qList.map(s => fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(s)}&entity=song&limit=15&country=SE`).then(r => r.json())));
+        playlist = res.flatMap(d => d.results);
+      }
+
+      playlist.sort(() => Math.random() - 0.5);
       currentIndex = 0; loadTrack(0); closePopup();
       document.getElementById('mini-player').classList.add('active');
     }
 
     function loadTrack(i) {
       const t = playlist[i];
+      if(!t) return;
       document.getElementById('player-art').src = t.artworkUrl100.replace('100x100bb', '400x400bb');
       document.getElementById('player-title').innerText = t.trackName;
       document.getElementById('player-artist').innerText = t.artistName;
       document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(t.trackName + ' ' + t.artistName)}`;
+      
+      document.getElementById('like-btn').classList.remove('liked');
+      document.body.style.background = "#fdf8f3";
+      
       audio.src = t.previewUrl;
       audio.volume = 0;
       audio.oncanplay = () => {
           audio.play();
           let vol = 0;
-          const fadeIn = setInterval(() => { if (vol < 0.45) { vol += 0.05; audio.volume = vol; } else { clearInterval(fadeIn); } }, 100);
+          const fadeIn = setInterval(() => {
+              if (vol < 0.45) { vol += 0.05; audio.volume = vol; } 
+              else { clearInterval(fadeIn); }
+          }, 100);
       };
       audio.load();
     }
@@ -377,7 +387,9 @@
     function expandPlayer() { document.getElementById('mini-player').classList.remove('minimized'); }
     function togglePlay(e) { if(e) e.stopPropagation(); audio.paused ? audio.play() : audio.pause(); document.getElementById('play-pause-icon').innerText = audio.paused ? "►" : "II"; }
     function seek(e) { e.stopPropagation(); const r = e.currentTarget.getBoundingClientRect(); audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration; }
-    audio.ontimeupdate = () => { document.getElementById('progress-fill').style.width = (audio.currentTime / audio.duration) * 100 + '%'; };
+    audio.ontimeupdate = () => {
+        document.getElementById('progress-fill').style.width = (audio.currentTime / audio.duration) * 100 + '%';
+    };
     function nextTrack(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex + 1) % playlist.length; loadTrack(currentIndex); }
     function prevTrack(e) { if(e) e.stopPropagation(); currentIndex = (currentIndex - 1 + playlist.length) % playlist.length; loadTrack(currentIndex); }
     function backToMoods(e) { if(e) e.stopPropagation(); audio.pause(); document.getElementById('mini-player').classList.remove('active'); openPopup(); }
