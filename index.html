@@ -10,7 +10,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lovisa Celander — Strateg & Kreatör</title>
+  <title>Lovisa Celander — Marketing </title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
 
@@ -173,7 +173,7 @@
   <main>
     <section class="hero reveal">
       <h2>Lovisa <br>Celander.</h2>
-      <p>Strategisk design & digital tillväxt</p>
+      <p>Growth Marketing</p>
     </section>
 
     <section class="folders-grid">
@@ -193,6 +193,10 @@
     </section>
 
     <section class="rotation-section reveal">
+  
+    <h3 style="font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; font-weight: 700; opacity: 0.8;">What I'm up to right now...</h3>
+    
+    <div class="rotation-grid">
         <div class="rotation-grid">
             <div class="rotation-item">
                 <span>Reading</span>
@@ -266,11 +270,19 @@
         const quoteEl = document.getElementById('philosophy-quote');
         const authorEl = document.getElementById('quote-author');
         try {
-            const res = await fetch("https://api.quotable.io/random?tags=wisdom,creativity");
+            // Stabilt API för korta citat/råd
+            const res = await fetch("https://api.adviceslip.com/advice");
             const data = await res.json();
-            quoteEl.innerText = `"${data.content}"`;
-            authorEl.innerText = `— ${data.author}`;
+            
+            quoteEl.innerText = `"${data.slip.advice}"`;
+    
+            authorEl.style.opacity = "0.4";
+            authorEl.style.fontSize = "0.6rem";
+            authorEl.style.marginTop = "10px";
+            authorEl.style.textTransform = "uppercase";
+            
         } catch (e) {
+            // Reserv om API:et skulle ligga nere
             quoteEl.innerText = '"Imagination is more important than knowledge."';
             authorEl.innerText = "— Albert Einstein";
         }
