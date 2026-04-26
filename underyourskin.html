@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Under Your Skin — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { background: #f3f1ed; font-family: 'Montserrat', sans-serif; color: #1f1b18; }
+section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f3f1ed; }
+.hero { z-index: 10; }
+.nav-top { position: absolute; top: 40px; left: 40px; z-index: 100; }
+.nav-top a { text-decoration: none; color: #1f1b18; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; opacity: 0.4; transition: opacity 0.3s ease; }
+.nav-top a:hover { opacity: 1; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 12vw, 10rem); font-weight: 400; letter-spacing: -4px; }
+.scroll { margin-top: 20px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; }
+.img-block-1, .img-block-2, .img-block-3 { z-index: 20; }
+.img-block-2 { z-index: 40; }
+.img-block-3 { z-index: 60; }
+section img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.text-block { z-index: 30; padding: 0 60px; }
+.text-inner { max-width: 1000px; width: 100%; text-align: left; }
+.text-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 60px; letter-spacing: -1px; }
+.text-content-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; }
+.text-content-grid p { font-size: 1.1rem; line-height: 1.7; }
+.specs-box { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
+.spec-item { margin-bottom: 35px; }
+.spec-item span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; opacity: 0.4; margin-bottom: 12px; }
+.spec-item p { font-size: 0.95rem; line-height: 1.8; }
+.quote-block { z-index: 50; background: #111; color: #f8f7f4; }
+.quote-block p { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 3rem); font-style: italic; max-width: 900px; }
+.next { z-index: 70; }
+.next span { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; opacity: 0.4; margin-bottom: 20px; }
+.next h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); font-weight: 400; letter-spacing: -2px; transition: 0.5s ease; }
+.next a { text-decoration: none; color: inherit; text-align: center; }
+.next a:hover h2 { font-style: italic; opacity: 0.6; letter-spacing: 0px; }
+@media (max-width: 900px) { .nav-top { top: 20px; left: 20px; } .text-content-grid { grid-template-columns: 1fr; gap: 40px; } }
+</style>
+</head>
+<body>
+<section class="hero">
+  <nav class="nav-top"><a href="portfolio.html">← Go back</a></nav>
+  <div><h1>Under Your Skin</h1><div class="scroll">Scroll to explore</div></div>
+</section>
+<section class="img-block-1"><img src="./underyourskin1.png" alt="Under Your Skin" /></section>
+<section class="text-block"><div class="text-inner"><h2>A conversion-focused beauty experience.</h2><div class="text-content-grid"><div><p>Under Your Skin needed a website that turned product interest into action. I designed an experience that communicates benefits clearly and guides visitors toward key conversion points.</p></div><div class="specs-box"><div class="spec-item"><span>Role</span><p>Conversion-focused design & UX optimization</p></div><div class="spec-item"><span>Work</span><p>Landing page concept, CTA flow, product storytelling</p></div></div></div></div></section>
+<section class="img-block-2"><img src="./underyourskin1.png" alt="Under Your Skin" /></section>
+<section class="quote-block"><p>“Every detail is built to feel intuitive and premium.”</p></section>
+<section class="img-block-3"><img src="./underyourskin1.png" alt="Under Your Skin" /></section>
+<section class="next"><span>Next project</span><a href="akademi.html"><h2>Akademibokhandeln</h2></a></section>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NXQ526ZN');</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Works — Lovisa Celander</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #fdf8f3;       
+      --text-main: #1a1a17;
+      --text-white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    
+    html {
+      scroll-snap-type: y proximity;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0; background: var(--bg-main); color: var(--text-main);
+      font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased;
+    }
+
+    .header { padding: 40px 60px; display: flex; justify-content: flex-end; position: fixed; width: 100%; top: 0; z-index: 1000; }
+    nav a { text-decoration: none; color: var(--text-main); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-left: 30px; font-weight: 600; opacity: 0.6; transition: 0.3s; }
+    nav a:hover { opacity: 1; }
+
+    .portfolio-intro { 
+      padding: 160px 60px 80px; 
+      max-width: 1400px; 
+      margin: 0 auto;
+      scroll-snap-align: start; 
+    }
+    .portfolio-intro span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 5px; color: rgba(26, 26, 23, 0.5); font-weight: 700; }
+    .portfolio-intro h1 { font-family: 'Playfair Display'; font-size: clamp(4rem, 12vw, 9rem); margin: 20px 0 0; font-weight: 400; letter-spacing: -4px; line-height: 0.8; }
+
+    .case-stack { padding-bottom: 5vh; }
+
+    .case-item {
+      position: sticky;
+      top: 5vh;
+      height: 85vh;
+      margin: 0 40px 15vh 40px; 
+      border-radius: 50px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      scroll-snap-align: center;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .case-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+      display: block;
+      transition: opacity 0.35s ease;
+      opacity: 1;
+    }
+
+    .case-item.clickable { cursor: pointer; }
+    .case-item.clickable .case-info { transition: transform 0.3s ease; }
+    .case-item.clickable:hover .case-info { transform: translateY(-10px); }
+
+    /* Gradient overlay */
+    .case-item::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+    }
+
+    .case-info {
+      position: relative; z-index: 2; padding: 80px; color: var(--text-white);
+    }
+
+    .case-info span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.8; }
+    .case-info h2 { font-family: 'Playfair Display'; font-size: clamp(2.5rem, 6vw, 5rem); margin: 10px 0 15px; font-weight: 400; letter-spacing: -1px; }
+
+    /* --- BILD-INSTÄLLNINGAR --- */
+
+    #commonclouds { background-color: #d8dee9; }
+
+    #ophelia { 
+      /* VIKTIGT: Kontrollera att filnamnet nedan matchar VS Code exakt */
+      background-image: url('./lovisacelander.github.io/ophelia.portfolio.png'); 
+      background-color: #333; /* En mörk färg som syns om bilden saknas */
+    }
+
+    #fotografiska { background-image: url('./lovisacelander.github.io/fotografiska3.png'); background-color: #ebcb8b; }
+    #suie { background-color: #a3be8c; }
+    #under-your-skin { background-color: #bf616a; }
+    #akademi { background-image: url('./lovisacelander.github.io/akademibokhandeln3.png'); background-color: #b48ead; }
+
+    .footer { padding: 100px 0; text-align: center; scroll-snap-align: end; }
+    .footer a { text-decoration: none; color: var(--text-main); text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; border-bottom: 2px solid var(--text-main); padding-bottom: 5px; }
+
+    @media (max-width: 900px) {
+      .case-item { margin: 0 15px 5vh 15px; border-radius: 30px; height: 75vh; }
+      .case-info { padding: 40px; }
+      .portfolio-intro { padding: 120px 25px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXQ526ZN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="header">
+    <nav>
+      <a href="./lovisacelander.github.io/index.html">Background</a>
+      <a href="./lovisacelander.github.io/index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="portfolio-intro">
+      <span>02 / Selected Cases</span>
+      <h1>Works.</h1>
+    </section>
+
+    <div class="case-stack">
+      
+      <section class="case-item" id="commonclouds">
+        <div class="case-info">
+          <span>Growth & Strategy</span>
+          <h2>Common Clouds</h2>
+        </div>
+      </section>
+
+      <section class="case-item" id="ophelia">
+        <img src="./lovisacelander.github.io/ophelia.portfolio.png" alt="Ophelia portfolio" />
+        <div class="case-info">
+          <span>Creative Direction</span>
+          <h2>OPHELIA.</h2>
+        </div>
+      </section>
+
+      <section class="case-item" id="fotografiska">
+        <img id="fotografiska-img" src="./lovisacelander.github.io/fotografiska3.png" alt="Fotografiska portfolio" />
+        <div class="case-info">
+          <span>Experience Design</span>
+          <h2>Fotografiska</h2>
+        </div>
+      </section>
+
+      <section class="case-item" id="suie">
+        <div class="case-info">
+          <span>Brand Identity</span>
+          <h2>SUIE</h2>
+        </div>
+      </section>
+
+      <section class="case-item" id="under-your-skin">
+        <div class="case-info">
+          <span>Digital Marketing</span>
+          <h2>Under Your Skin</h2>
+        </div>
+      </section>
+
+      <section class="case-item" id="akademi">
+        <img id="akademi-img" src="./lovisacelander.github.io/akademibokhandeln3.png" alt="Akademibokhandeln portfolio" />
+        <div class="case-info">
+          <span>Retail Modernization</span>
+          <h2>Akademibokhandeln</h2>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <a href="index.html">← Back to start</a>
+    </footer>
+  </main>
+
+  <script>
+    const imageRotators = [
+      {
+        sectionId: 'fotografiska',
+        imgId: 'fotografiska-img',
+        images: [
+          './lovisacelander.github.io/fotografiska3.png',
+          './lovisacelander.github.io/fotografiska2.png',
+          './lovisacelander.github.io/fotografiska1.png'
+        ]
+      },
+      {
+        sectionId: 'akademi',
+        imgId: 'akademi-img',
+        images: [
+          './lovisacelander.github.io/akademibokhandeln3.png',
+          './lovisacelander.github.io/akademibokhandeln2.png',
+          './lovisacelander.github.io/akademibokhandeln1.png'
+        ]
+      }
+    ];
+
+    imageRotators.forEach(({ sectionId, imgId, images }) => {
+      const section = document.getElementById(sectionId);
+      const img = document.getElementById(imgId);
+      if (!section || !img) return;
+
+      let currentIndex = 0;
+      section.classList.add('clickable');
+      section.addEventListener('click', () => {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % images.length;
+          img.src = images[currentIndex];
+          img.style.opacity = '1';
+        }, 250);
+      });
+    });
+  </script>
+</body>
+</html>

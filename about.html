@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Lovisa Celander</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #fdf8f3;       
+      --text-main: #1a1a17;     
+    }
+
+    * { box-sizing: border-box; }
+    ::selection { background: #1a1a17; color: #fff; }
+
+    body {
+      margin: 0;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* --- GRAIN TEXTURE --- */
+    body::before {
+      content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.04; pointer-events: none; z-index: 50;
+    }
+
+    /* --- NAVIGATION --- */
+    .header {
+      padding: 40px 60px;
+      display: flex;
+      justify-content: flex-start;
+      position: fixed; top: 0; z-index: 100; width: 100%;
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+    }
+    .back-link::before { content: '['; position: absolute; left: -15px; opacity: 0; transition: 0.3s; }
+    .back-link::after { content: ']'; position: absolute; right: -15px; opacity: 0; transition: 0.3s; }
+    .back-link:hover::before { opacity: 1; left: -12px; }
+    .back-link:hover::after { opacity: 1; right: -12px; }
+
+    /* --- ABOUT LAYOUT --- */
+    .about-main {
+      max-width: 1100px;
+      margin: 180px auto 120px auto; 
+      padding: 0 30px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* --- HERO --- */
+    .hero-title-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .about-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 400;
+      line-height: 0.9;
+      margin: 0;
+      letter-spacing: -3px;
+      z-index: 1;
+      padding-right: 40px; 
+    }
+
+    /* SCRAMBLE CSS */
+    .scramble-text {
+      visibility: hidden;
+      display: inline-block;
+    }
+    .scramble-text.active {
+      visibility: visible;
+    }
+
+    /* --- BILD-BLOCK --- */
+    .image-block {
+      position: absolute;
+      right: -80px; 
+      top: -60px;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      z-index: 2;
+    }
+
+    .childhood-photo-box {
+      width: clamp(180px, 22vw, 240px);
+      border: 8px solid #fff;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      transform: rotate(4deg);
+      position: relative;
+      z-index: 2;
+    }
+    .childhood-photo-box img { width: 100%; display: block; }
+
+    /* --- SIGNATUR --- */
+    .signature-container {
+      width: clamp(200px, 30vw, 280px);
+      margin-top: -30px;
+      transform: rotate(-3deg);
+      opacity: 0;
+      transition: opacity 1s ease 0.3s;
+      z-index: 3;
+    }
+
+    .signature-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .signature-container.has-image {
+      opacity: 1;
+    }
+
+    /* --- TEXT CONTENT --- */
+    .about-bio-text {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      font-weight: 300;
+      color: var(--text-main);
+      max-width: 650px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .about-bio-text p { margin-bottom: 40px; }
+
+    /* --- ANIMATIONS --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- RESPONSIVITET --- */
+    @media (max-width: 1100px) {
+      .image-block { right: -20px; }
+    }
+
+    @media (max-width: 900px) {
+      .header { padding: 30px; }
+      .about-main { margin-top: 120px; padding: 0 20px; }
+
+      .hero-title-container {
+        flex-direction: column;
+        margin-bottom: 40px;
+      }
+
+      .about-hero-title {
+        font-size: 3.5rem;
+        padding-right: 0;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .image-block {
+        position: relative;
+        right: auto;
+        top: auto;
+        margin-bottom: 10px;
+      }
+
+      .childhood-photo-box {
+        width: 210px;
+      }
+      
+      .signature-container {
+        width: 220px;
+        margin-top: -25px;
+      }
+
+      .about-bio-text {
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="back-link" onclick="if(window.history.length > 1) { event.preventDefault(); window.history.back(); }">Go Back</a>
+  </header>
+
+  <main class="about-main">
+    
+    <div class="hero-title-container reveal">
+      <h1 class="about-hero-title">
+        Who is <br>
+        <span class="scramble-text" data-value="Lovisa?" data-scrambled="false">Lovisa?</span>
+      </h1>
+      
+      <div class="image-block">
+        <div class="childhood-photo-box">
+          <img src="liten.jpg" alt="Mini Lovisa">
+        </div>
+        
+        <div class="signature-container" id="signatureBox">
+          <img src="me.png" alt="me" id="meImg">
+        </div>
+      </div>
+    </div>
+
+    <div class="about-bio-text reveal">
+      <p>
+        Hi! I’m <strong>Lovisa Celander</strong>, a 23 year old Growth Marketing student based in Stockholm, Sweden. 
+        I’m currently studying the Growth Marketing program at <em>Berghs School of Communication</em>, 
+        where I’m learning how to help brands grow through strategy, creativity, and digital marketing.
+      </p>
+
+      <p>
+        Alongside my studies, I run my own brand <strong>Ophelia</strong>, where I design and sew handmade products like makeup bags and laptop cases. 
+        Through Ophelia, I’ve discovered my passion for storytelling, brand identity, and creating with intention. Values I bring into every project I work on.
+      </p>
+
+      <p>
+        I enjoy exploring how analysis, numbers, and strategy can work together with content and creativity to make a brand grow. 
+        I’m looking for opportunities where I can contribute, learn, and apply both my analytical and creative skills to drive meaningful growth.
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    const sigImg = document.getElementById('meImg');
+    const sigBox = document.getElementById('signatureBox');
+    
+    if (sigImg) {
+        sigImg.onload = () => sigBox.classList.add('has-image');
+        sigImg.onerror = () => sigBox.style.display = 'none';
+    }
+
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let scrambleInterval = null;
+
+    function startScramble(el) {
+      // Om den redan har körts, avbryt
+      if (el.dataset.scrambled === "true") return;
+      
+      let iteration = 0;
+      clearInterval(scrambleInterval);
+      el.classList.add('active');
+      
+      scrambleInterval = setInterval(() => {
+        el.innerText = el.innerText.split("").map((letter, index) => {
+          if(index < iteration) return el.dataset.value[index];
+          return letters[Math.floor(Math.random() * 26)]
+        }).join("");
+        
+        if(iteration >= el.dataset.value.length) {
+          clearInterval(scrambleInterval);
+          el.dataset.scrambled = "true"; // Markera som klar
+        }
+        iteration += 1 / 3;
+      }, 30);
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { 
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          const scrambleSpan = entry.target.querySelector('.scramble-text');
+          if(scrambleSpan && scrambleSpan.dataset.scrambled === "false") {
+            startScramble(scrambleSpan);
+          }
+          
+          // Sluta observera elementet när det väl har kommit i bild (valfritt, men bra för prestanda)
+          // observer.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
+

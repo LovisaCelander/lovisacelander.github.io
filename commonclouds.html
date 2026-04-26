@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>COMMON CLOUDS — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { background: #f8f7f4; font-family: 'Montserrat', sans-serif; color: #1e1b18; }
+
+/* Sticky Sections */
+section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f7f4; }
+
+/* Navigation */
+.nav-top { 
+    position: fixed; 
+    top: 40px; 
+    left: 40px; 
+    z-index: 1000; 
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Klass för att dölja menyn */
+.nav-top.hidden { 
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+}
+
+.nav-top a { 
+    text-decoration: none; 
+    color: #1e1b18; 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 500; 
+    transition: 0.3s ease; 
+}
+
+.nav-top a::before { content: '['; margin-right: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a::after { content: ']'; margin-left: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a:hover::before, .nav-top a:hover::after { opacity: 0.5; }
+
+/* Hero */
+.hero { z-index: 10; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 400; letter-spacing: -3px; }
+.scroll { margin-top: 20px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; }
+
+/* Image Blocks */
+.img-block-1, .img-block-2 { z-index: 20; padding: 60px; } 
+.img-block-2 { z-index: 60; }
+section img { width: 100%; height: 100%; object-fit: contain; will-change: transform; }
+
+/* Text Content */
+.text-block { z-index: 30; padding: 0 60px; }
+.text-inner { max-width: 1100px; width: 100%; text-align: left; }
+.text-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 60px; letter-spacing: -1px; }
+
+.text-content-grid { display: grid; grid-template-columns: 1fr 1fr 0.6fr; gap: 60px; align-items: start; }
+.text-main-column p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px; opacity: 0.9; color: #333; font-weight: 400; }
+
+/* Stats */
+.stat-item { margin-bottom: 35px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 2.8rem; display: block; line-height: 1.1; margin-bottom: 8px; font-weight: 400; font-style: italic; }
+.stat-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; opacity: 0.5; }
+
+.specs-box { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
+.spec-item { margin-bottom: 35px; }
+.spec-item span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; opacity: 0.4; margin-bottom: 12px; }
+.spec-item p { font-size: 0.9rem; line-height: 1.7; font-weight: 400; }
+
+/* NEXT PROJECT SECTION */
+.next { z-index: 90; flex-direction: column; text-align: center; }
+.next span { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; opacity: 0.4; margin-bottom: 20px; }
+.next h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); font-weight: 400; letter-spacing: -2px; transition: 0.4s ease; }
+.next a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; }
+.next a:hover h2 { font-style: italic; }
+
+.back-link { margin-top: 50px; }
+.back-link a { 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    font-weight: 500; 
+    opacity: 0.4; 
+    text-decoration: none; 
+    color: #1e1b18; 
+    transition: 0.3s;
+}
+.back-link a:hover { opacity: 1; }
+
+@media (max-width: 1000px) { 
+    .nav-top { top: 20px; left: 20px; } 
+    .text-content-grid { grid-template-columns: 1fr; gap: 40px; } 
+    .img-block-1, .img-block-2 { padding: 20px; }
+    .text-block { padding: 0 30px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-top" id="mainNav"><a href="portfolio1.html">Go back to all cases</a></nav>
+
+<section class="hero">
+  <div>
+    <h1>Common Clouds.</h1>
+    <div class="scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<section class="img-block-1"><img src="commonclouds1.png" alt="Common Clouds Case Visual" /></section>
+
+<section class="text-block">
+    <div class="text-inner">
+        <h2>Future proofing digital visibility</h2>
+        <div class="text-content-grid">
+            <div class="text-main-column">
+                <p>In a team of three, we worked closely with Common Clouds to elevate their digital presence through a multi layered optimization strategy. Our work included a deep SEO analysis, content optimization of articles for better search intent, and CRO recommendations for a smoother user journey.</p>
+                <p>To ensure longterm relevance, we implemented GEO (Generative Engine Optimization) strategies, preparing the brand for the future of AI-driven search. Following the project, our strategic recommendations were fully implemented and are now live on their official website.</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-value">SEO & GEO</span>
+                  <span class="stat-label">Search & AI Visibility</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">CRO Fixes</span>
+                  <span class="stat-label">Conversion optimization</span>
+                </div>
+            </div>
+            
+            <div class="specs-box">
+                <div class="spec-item"><span>Role</span><p>Growth Strategist</p></div>
+                <div class="spec-item"><span>Work</span><p>SEO Analysis, <br>GEO Integration, <br>Article Optimization For SEO <br>CRO Strategy</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="img-block-2"><img src="commonclouds2.png" alt="Common Clouds Strategy" /></section>
+
+<section class="next">
+    <span>Next project</span>
+    <a href="fotografiska.html"><h2>Fotografiska</h2></a>
+    
+    <div class="back-link">
+        <a href="portfolio1.html">Or go back to all cases</a>
+    </div>
+</section>
+
+<script>
+    let lastScrollY = window.scrollY;
+    const nav = document.getElementById('mainNav');
+
+    window.addEventListener('scroll', () => {
+        let currentScrollY = window.scrollY;
+        let windowHeight = window.innerHeight;
+        let fullHeight = document.documentElement.scrollHeight;
+
+        // 1. Om man är vid toppen -> Visa
+        if (currentScrollY < 50) {
+            nav.classList.remove('hidden');
+        } 
+        // 2. Om man är längst ner (vid "Next Project") -> Göm
+        else if (currentScrollY + windowHeight >= fullHeight - 50) {
+            nav.classList.add('hidden');
+        }
+        // 3. Om man scrollar neråt -> Göm
+        else if (currentScrollY > lastScrollY) {
+            nav.classList.add('hidden');
+        } 
+        // 4. Om man scrollar uppåt -> Visa
+        else {
+            nav.classList.remove('hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+    }, { passive: true });
+</script>
+
+</body>
+</html>

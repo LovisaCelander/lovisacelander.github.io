@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NNFH7PJP');
+  </script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Lovisa Celander</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #1a1a17;       
+      --text-main: #fdf8f3;     
+      --text-soft: rgba(253, 248, 243, 0.4);    
+      --border-color: rgba(253, 248, 243, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+    ::selection { background: var(--text-main); color: var(--bg-main); }
+
+    body {
+      margin: 0; background-color: var(--bg-main); color: var(--text-main);
+      font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.05; pointer-events: none; z-index: 50;
+    }
+
+    /* --- NAVIGATION --- */
+    .header { 
+      padding: 40px 60px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      width: 100%; 
+      position: fixed; 
+      top: 0; 
+      z-index: 100;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .header.nav-up { transform: translateY(-100%); }
+
+    .back-nav a, nav a { 
+      text-decoration: none; color: var(--text-main); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; 
+      font-weight: 600; position: relative; transition: 0.3s;
+    }
+
+    .header a::before { content: '['; opacity: 0; margin-right: 8px; transition: 0.3s; }
+    .header a::after { content: ']'; opacity: 0; margin-left: 8px; transition: 0.3s; }
+    .header a:hover::before, .header a:hover::after { opacity: 0.5; }
+
+    /* --- CONTAINER --- */
+    .cv-container { max-width: 1400px; margin: 200px auto 100px; padding: 0 60px; position: relative; z-index: 60; }
+
+    .cv-header h1 { 
+      font-family: 'Playfair Display', serif; font-size: clamp(5rem, 18vw, 16rem); 
+      margin: 0; font-weight: 400; letter-spacing: -8px; line-height: 0.8; 
+      border-bottom: 1px solid var(--border-color); padding-bottom: 60px;
+      text-transform: uppercase;
+    }
+
+    /* --- CV ROWS --- */
+    .cv-list { margin-top: 20px; }
+    .cv-row { 
+      display: grid; grid-template-columns: 100px 1fr auto; align-items: center; 
+      padding: 60px 0; border-bottom: 1px solid var(--border-color); 
+      transition: all 0.5s ease;
+    }
+    .lang-code { font-size: 0.75rem; font-weight: 800; color: var(--text-soft); letter-spacing: 3px; }
+    .cv-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 6rem); letter-spacing: -3px; transition: all 0.4s ease; }
+
+    .cv-row:hover .cv-title { font-style: italic; transform: translateX(20px); }
+    .cv-row:hover { background: rgba(255,255,255, 0.03); padding-left: 30px; padding-right: 30px; border-bottom-color: var(--text-main); }
+
+    /* --- BUTTONS --- */
+    .btn-group { display: flex; gap: 15px; }
+    .action-btn { 
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; 
+      border: 1px solid var(--border-color); padding: 16px 32px; border-radius: 50px; 
+      transition: 0.4s; color: var(--text-main); text-decoration: none;
+    }
+    .action-btn:hover { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); transform: translateY(-4px); }
+
+    /* --- FOOTER INFO --- */
+    .cv-footer-meta { 
+      margin-top: 100px; display: grid; grid-template-columns: repeat(3, 1fr); 
+      gap: 40px; padding-top: 80px; border-top: 1px solid var(--border-color);
+      align-items: flex-end;
+    }
+    
+    .meta-block { display: flex; flex-direction: column; position: relative; }
+    .meta-block span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 4px; color: var(--text-soft); font-weight: 800; margin-bottom: 20px; }
+    .meta-block p, .meta-block a { font-family: 'Playfair Display'; font-size: 1.6rem; font-style: italic; color: var(--text-main); text-decoration: none; transition: 0.3s; margin: 0; width: fit-content; }
+    .meta-block a:hover { opacity: 0.6; }
+
+    /* HOVER REVEAL BILD */
+    .location-reveal { position: relative; cursor: default; }
+    
+    .location-image-wrap {
+      position: absolute;
+      bottom: 150%;
+      left: 0;
+      width: 220px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(15px) scale(0.9);
+      pointer-events: none;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    
+    .location-image-wrap img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover;
+      display: block;
+      transform: scale(1.15); 
+      border: none;
+      outline: 4px solid var(--bg-main);
+      outline-offset: -4px;
+    }
+
+    .location-reveal:hover .location-image-wrap { opacity: 1; transform: translateY(0) scale(1); }
+
+    /* --- ANIMATIONS --- */
+    .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .cv-container { padding: 0 30px; margin-top: 140px; }
+      .cv-row { grid-template-columns: 1fr; gap: 30px; text-align: center; justify-items: center; }
+      .cv-footer-meta { grid-template-columns: 1fr; text-align: center; justify-items: center;}
+      .header { padding: 30px; }
+      .location-image-wrap { left: 50%; transform: translateX(-50%) translateY(15px) scale(0.9); width: 180px; bottom: 130%;}
+      .location-reveal:hover .location-image-wrap { transform: translateX(-50%) translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="back-nav">
+      <a href="index.html" onclick="if(window.history.length > 1) { event.preventDefault(); window.history.back(); }">Go Back</a>
+    </div>
+    <nav>
+      <a href="portfolio1.html">Cases</a>
+    </nav>
+  </header>
+
+  <main class="cv-container">
+    
+    <header class="cv-header reveal">
+      <h1>CV.</h1>
+    </header>
+
+    <div class="cv-list">
+      <div class="cv-row reveal">
+        <span class="lang-code">SE</span>
+        <span class="cv-title">Svenska</span>
+        <div class="btn-group">
+          <a href="cv-sv.pdf" download class="action-btn">Ladda ner CV (SE)</a>
+        </div>
+      </div>
+
+      <div class="cv-row reveal">
+        <span class="lang-code">EN</span>
+        <span class="cv-title">English</span>
+        <div class="btn-group">
+          <a href="cv-en.pdf" download class="action-btn">Download CV (EN)</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="cv-footer-meta reveal">
+        <div class="meta-block">
+          <span>Inquiries</span>
+          <a href="mailto:celanderlovisa@gmail.com">celanderlovisa@gmail.com</a>
+        </div>
+        <div class="meta-block">
+          <span>Social</span>
+          <a href="https://linkedin.com/in/lovisacelander" target="_blank">LinkedIn</a>
+        </div>
+        
+        <div class="meta-block location-reveal">
+          <div class="location-image-wrap">
+            <img src="stockholm2.png" alt="Stockholm, Sweden">
+          </div>
+          <span>Based in</span>
+          <p>Stockholm, SE</p>
+        </div>
+    </section>
+  </main>
+
+  <script>
+    // Reveal rows on scroll
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // HEADER SCROLL SCRIPT
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    const delta = 5;
+
+    window.addEventListener('scroll', function() {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (Math.abs(lastScrollTop - st) <= delta) return;
+      
+      if (st > lastScrollTop && st > 100) {
+        header.classList.add('nav-up');
+      } else {
+        header.classList.remove('nav-up');
+      }
+      
+      lastScrollTop = st;
+    });
+  </script>
+</body>
+</html>

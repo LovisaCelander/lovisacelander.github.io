@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JUST GLOW — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { background: #f8f7f4; font-family: 'Montserrat', sans-serif; color: #1e1b18; }
+
+/* Sticky Sections */
+section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f7f4; }
+
+/* Navigation with brackets and hide/show logic */
+.nav-top { 
+    position: fixed; 
+    top: 40px; 
+    left: 40px; 
+    z-index: 1000; 
+    transition: transform 0.4s ease-in-out;
+}
+.nav-top.hidden { transform: translateY(-100px); }
+
+.nav-top a { 
+    text-decoration: none; 
+    color: #1e1b18; 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 700; 
+    transition: 0.3s ease; 
+}
+
+.nav-top a::before { content: '['; margin-right: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a::after { content: ']'; margin-left: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a:hover::before, .nav-top a:hover::after { opacity: 0.5; }
+
+/* Hero */
+.hero { z-index: 10; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 12vw, 10rem); font-weight: 400; letter-spacing: -4px; }
+.scroll { margin-top: 20px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; }
+
+/* Image Blocks */
+.img-block-1, .img-block-2 { z-index: 20; padding: 60px; } 
+.img-block-2 { z-index: 60; }
+section img { width: 100%; height: 100%; object-fit: contain; will-change: transform; }
+
+/* Text Content */
+.text-block { z-index: 30; padding: 0 60px; }
+.text-inner { max-width: 1100px; width: 100%; text-align: left; }
+.text-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 60px; letter-spacing: -1px; }
+
+.text-content-grid { display: grid; grid-template-columns: 1fr 1fr 0.6fr; gap: 60px; align-items: start; }
+.text-main-column p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px; opacity: 0.9; color: #333; }
+
+/* Stats - big & bold version */
+.stat-item { margin-bottom: 35px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 3.5rem; display: block; line-height: 1; margin-bottom: 8px; font-weight: 400; font-style: italic; }
+.stat-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; opacity: 0.5; }
+
+.specs-box { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
+.spec-item { margin-bottom: 35px; }
+.spec-item span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; opacity: 0.4; margin-bottom: 12px; }
+.spec-item p { font-size: 0.9rem; line-height: 1.7; font-weight: 500; }
+
+/* Next Project */
+.next { z-index: 90; flex-direction: column; }
+.next span { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; opacity: 0.4; margin-bottom: 20px; }
+.next h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); font-weight: 400; letter-spacing: -2px; transition: 0.4s ease; }
+.next a { text-decoration: none; color: inherit; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.next a:hover h2 { font-style: italic; }
+
+@media (max-width: 1000px) { 
+    .nav-top { top: 20px; left: 20px; } 
+    .text-content-grid { grid-template-columns: 1fr; gap: 40px; } 
+    .img-block-1, .img-block-2 { padding: 20px; }
+    .text-block { padding: 0 30px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-top" id="mainNav"><a href="portfolio1.html">Go back to all cases</a></nav>
+
+<section class="hero">
+  <div>
+    <h1>JUST GLOW.</h1>
+    <div class="scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<section class="img-block-1">
+  <img src="justglow3.png" alt="Just Glow Ad">
+</section>
+
+<section class="text-block">
+    <div class="text-inner">
+        <h2>Scaling growth from zero</h2>
+        <div class="text-content-grid">
+            <div class="text-main-column">
+                <p>Starting with no prior advertising, we implemented a full funnel strategy across two new channels. By developing diverse ad copies and high converting creatives, we established a strong brand presence from day one.</p>
+                
+                <p>The first month resulted in a rapid scale up, proving the effectiveness of the targeted visual and written strategy. Through continuous testing and weekly optimization, we turned a new brand into a performing player in its niche.</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-value">143</span>
+                  <span class="stat-label">Total Purchases (Month 1)</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">2</span>
+                  <span class="stat-label">New Ad Channels Launched</span>
+                </div>
+            </div>
+            
+            <div class="specs-box">
+                <div class="spec-item"><span>Role</span><p>Growth & <br>Performance Marketer</p></div>
+                <div class="spec-item"><span>Work</span><p>Ad Creation, <br>Copywriting, <br>Weekly Reporting, <br>Campaign Optimization</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="img-block-2">
+  <img src="justglow2.png" alt="Just Glow Creative">
+</section>
+
+<section class="next">
+    <span>Next project</span>
+    <a href="commonclouds.html"><h2>Common Clouds</h2></a>
+</section>
+
+<script>
+    let lastScrollY = window.scrollY;
+    const nav = document.getElementById('mainNav');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            nav.classList.add('hidden');
+        } else {
+            nav.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
+    });
+</script>
+
+</body>
+</html>

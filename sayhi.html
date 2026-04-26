@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Say Hi — Lovisa Celander</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #000000;
+      --text-light: #fdf8f3;
+      --oval-bg: #e5e5e5;
+      --oval-text: #1a1a17;
+    }
+
+    * { box-sizing: border-box; outline: none; }
+    body {
+      margin: 0; background-color: var(--bg-dark); color: var(--text-light);
+      font-family: 'Montserrat', sans-serif; overflow: hidden;
+    }
+
+    /* --- NAVIGATION --- */
+    .header { 
+      padding: 40px 60px; display: flex; justify-content: flex-end; width: 100%; 
+      position: fixed; top: 0; z-index: 100;
+    }
+    nav a { 
+      text-decoration: none; color: var(--text-light); font-size: 0.7rem; 
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 600; 
+      position: relative; transition: 0.3s;
+      cursor: pointer;
+    }
+    nav a::before { content: '['; position: absolute; left: -15px; opacity: 0; transition: 0.3s; }
+    nav a::after { content: ']'; position: absolute; right: -15px; opacity: 0; transition: 0.3s; }
+    nav a:hover::before { opacity: 1; left: -12px; }
+    nav a:hover::after { opacity: 1; right: -12px; }
+
+    /* --- CONTENT --- */
+    .contact-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px;
+    }
+
+    .title-area { transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .title-area h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 400;
+      margin: 0 0 60px 0;
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+    .title-area h1 em { font-family: 'Playfair Display', serif; font-style: italic; }
+
+    /* --- FORM --- */
+    #contactForm {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+      transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .input-oval {
+      width: 100%;
+      background-color: var(--oval-bg);
+      border-radius: 100px;
+      border: none;
+      padding: 30px 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-style: italic;
+      color: var(--oval-text);
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .input-oval::placeholder { color: rgba(0,0,0,0.3); }
+    .input-oval:focus { background-color: #fff; transform: scale(1.01); }
+
+    .submit-oval {
+      margin-top: 30px;
+      padding: 20px 60px;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 100px;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.4s;
+      width: fit-content;
+      display: flex; align-items: center; gap: 15px;
+    }
+    .submit-oval:hover { background-color: #fff; color: #000; gap: 25px; }
+    .submit-oval:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* --- SUCCESS MESSAGE --- */
+    #successMessage {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #successMessage h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 4.5rem);
+      font-style: italic;
+      font-weight: 400;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    /* --- FOOTER --- */
+    .footer-minimal {
+      position: absolute; bottom: 40px; left: 60px; right: 60px;
+      display: flex; justify-content: flex-end;
+    }
+    .footer-link {
+      text-decoration: none; color: var(--text-light); font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 2px; margin-left: 40px;
+      font-weight: 600; opacity: 0.3; transition: 0.4s;
+    }
+    .footer-link:hover { opacity: 1; text-shadow: 0 0 10px rgba(253, 248, 243, 0.5); }
+
+    .fade-up { animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .header, .contact-container, .footer-minimal { padding: 30px; }
+      .input-oval { padding: 20px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav>
+      <a id="backBtn" onclick="goBack()">Go Back</a>
+    </nav>
+  </header>
+
+  <main class="contact-container">
+    <div id="formSection">
+      <div class="title-area fade-up">
+        <h1>Don't be a stranger,<br><em>say hi!</em></h1>
+      </div>
+
+      <form id="contactForm" action="https://formspree.io/f/mkokernw" method="POST" class="fade-up" style="animation-delay: 0.2s;" onsubmit="handleForm(event)">
+        <input type="text" name="name" class="input-oval" placeholder="your name" required>
+        <input type="email" name="email" class="input-oval" placeholder="your email adress" required>
+        <input type="text" name="message" class="input-oval" placeholder="say something nice :)" required>
+        
+        <button type="submit" id="submitBtn" class="submit-oval">
+          Send message <span>→</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="successMessage">
+      <h2>Thanks! I can't wait to read your email.</h2>
+    </div>
+  </main>
+
+  <footer class="footer-minimal fade-up" style="animation-delay: 0.4s;">
+    <a href="mailto:celanderlovisa@gmail.com" class="footer-link">Email</a>
+    <a href="https://linkedin.com/in/lovisacelander" target="_blank" class="footer-link">Linkedin</a>
+  </footer>
+
+  <script>
+    let hasSent = false;
+
+    function goBack() {
+      if (hasSent) {
+        window.location.href = 'index.html';
+      } else {
+        history.back();
+      }
+    }
+
+    // --- HANTERA FORMULÄRSKICKET ---
+    async function handleForm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Inaktivera knappen medan vi skickar
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          hasSent = true;
+          const formSection = document.getElementById('formSection');
+          const successMessage = document.getElementById('successMessage');
+
+          // Kör din snygga animation
+          formSection.style.opacity = '0';
+          formSection.style.transform = 'translateY(-20px)';
+          
+          setTimeout(() => {
+            formSection.style.display = 'none';
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+              successMessage.style.opacity = '1';
+              successMessage.style.transform = 'translateY(0)';
+            }, 50);
+          }, 800);
+        } else {
+          const errorData = await response.json();
+          alert("Oops! Det blev ett fel: " + errorData.errors.map(error => error.message).join(", "));
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Send message →";
+        }
+      } catch (error) {
+        alert("Oops! Det gick inte att skicka meddelandet just nu.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send message →";
+      }
+    }
+  </script>
+
+</body>
+</html>

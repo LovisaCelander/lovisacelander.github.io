@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AKADEMIBOKHANDELN — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { background: #f8f7f4; font-family: 'Montserrat', sans-serif; color: #111; }
+section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f7f4; }
+
+.hero { z-index: 10; }
+.nav-top { position: absolute; top: 40px; left: 40px; z-index: 100; }
+.nav-top a { text-decoration: none; color: #111; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; opacity: 0.4; transition: 0.3s; }
+.nav-top a:hover { opacity: 1; }
+
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 400; letter-spacing: -3px; text-transform: uppercase; }
+.scroll { margin-top: 20px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; }
+
+.img-block-1 { z-index: 20; }
+.img-block-2 { z-index: 40; }
+section img { width: 100%; height: 100%; object-fit: cover; }
+
+.text-block { z-index: 30; padding: 0 60px; }
+.text-inner { max-width: 1100px; width: 100%; text-align: left; }
+.text-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 50px; letter-spacing: -1px; }
+.text-content-grid { display: grid; grid-template-columns: 1fr 1fr 0.6fr; gap: 60px; align-items: start; }
+.text-content-grid p { font-size: 1.05rem; line-height: 1.7; color: #333; }
+
+.stat-item { margin-bottom: 30px; }
+.stat-value { font-family: 'Playfair Display', serif; font-size: 2.2rem; display: block; line-height: 1.2; margin-bottom: 8px; font-style: italic; }
+.stat-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; opacity: 0.5; }
+
+.specs-box { border-left: 1px solid rgba(0,0,0,0.1); padding-left: 30px; }
+.spec-item { margin-bottom: 35px; }
+.spec-item span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; opacity: 0.4; margin-bottom: 12px; }
+.spec-item p { font-size: 0.9rem; line-height: 1.6; }
+
+/* NEXT BLOCK */
+.next { z-index: 50; flex-direction: column; }
+.next span { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; opacity: 0.4; margin-bottom: 20px; }
+.next h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); font-weight: 400; letter-spacing: -2px; transition: 0.4s ease; margin-bottom: 40px; }
+.next a { text-decoration: none; color: inherit; text-align: center; }
+.next a:hover h2 { font-style: italic; }
+
+/* DISKRET KNAPP UNDER BOVOU */
+.back-btn { 
+  font-size: 0.6rem; 
+  text-transform: uppercase; 
+  letter-spacing: 3px; 
+  font-weight: 700; 
+  opacity: 0.4; 
+  transition: 0.3s; 
+  text-decoration: none;
+  color: #111;
+  padding: 10px 20px;
+}
+.back-btn:hover { opacity: 1; letter-spacing: 4px; }
+
+@media (max-width: 1000px) { .text-content-grid { grid-template-columns: 1fr; gap: 40px; } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <nav class="nav-top"><a href="portfolio1.html">← SEE ALL CASES</a></nav>
+  <div><h1>Akademibokhandeln.</h1><div class="scroll">Scroll to explore</div></div>
+</section>
+
+<section class="img-block-1"><img src="akademibokhandeln2.png" alt="Akademibokhandeln Concept" /></section>
+
+<section class="text-block">
+  <div class="text-inner">
+    <h2>Experts' choice for organic growth</h2>
+    <div class="text-content-grid">
+      <div>
+        <p>Working on a live brief from Akademibokhandeln in a team of five, we were tasked with driving organic interest among adult readers. We developed a comprehensive concept for their website titled "The Experts' Book Tips" – a framework designed to improve SEO and search visibility. </p>
+        <p style="margin-top: 20px;">To complement the site update, we presented a full content strategy for social media to drive traffic to the new expert hub. Although this concept remained a pitch presented to Akademibokhandeln rather than a live launch, it showcased a synergy between digital storytelling and organic reach.</p>
+      </div>
+      
+      <div class="stats-container">
+        <div class="stat-item">
+          <span class="stat-value">SEO Strategy</span>
+          <span class="stat-label">Site Concept & Search visibility</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">Content Strategy</span>
+          <span class="stat-label">Social traffic & Expert Curation</span>
+        </div>
+      </div>
+
+      <div class="specs-box">
+        <div class="spec-item"><span>Role</span><p>Content & SEO Strategist (Group Project)</p></div>
+        <div class="spec-item"><span>Work</span><p>Site Concept Development, <br>SEO Content Strategy, <br>Presentation & Pitch</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="img-block-2"><img src="akademibokhandeln1.png" alt="Akademibokhandeln Strategy" /></section>
+
+<section class="next">
+  <span>Next project</span>
+  <a href="bovou.html"><h2>Bovou</h2></a>
+  <a href="portfolio1.html" class="back-btn">See all cases</a>
+  <a href="index.html" class="back-btn">back home</a>
+</section>
+
+</body>
+</html>
