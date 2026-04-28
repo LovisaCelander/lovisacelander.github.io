@@ -16,9 +16,12 @@
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
     body {
       margin: 0; background-color: var(--bg-main); color: var(--text-main);
       font-family: 'Montserrat', sans-serif; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* --- BLACKOUT LOADER --- */
@@ -30,10 +33,7 @@
       transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
     }
 
-    /* Om introt ska hoppas över döljer vi loader direkt */
-    body.no-intro #loader { 
-      display: none !important; 
-    }
+    body.no-intro #loader { display: none !important; }
 
     .loader-content { text-align: center; width: 90%; }
     .loader-content h3 { 
@@ -46,7 +46,6 @@
     }
     .loader-sub { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 5px; margin-top: 20px; opacity: 0.4; }
     
-    /* Animationen för att skicka upp loadern */
     body.loaded #loader { transform: translateY(-100%); }
 
     /* --- NAVIGATION --- */
@@ -95,11 +94,7 @@
       33% { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; }
       66% { font-family: 'Courier New', monospace; font-style: normal; font-weight: 400; letter-spacing: 5px; }
     }
-    .scroll-indicator.fade-out { 
-      opacity: 0; 
-      transform: translateY(-20px); 
-      pointer-events: none; 
-    }
+    .scroll-indicator.fade-out { opacity: 0; transform: translateY(-20px); pointer-events: none; }
 
     /* --- REVEAL UP --- */
     .reveal-section { opacity: 0; transform: translateY(60px); transition: all 1.2s cubic-bezier(0.215, 0.61, 0.355, 1); }
@@ -115,7 +110,7 @@
     }
     .pitch-text.in-view { filter: blur(0); opacity: 1; transform: translateY(0); }
 
-    /* --- GROWTH & COMPETENCE --- */
+    /* --- CONTENT GRID --- */
     .content-grid { padding: 100px 60px 150px 60px; max-width: 1400px; margin: 0 auto; }
     .huge-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; text-transform: uppercase; letter-spacing: -4px; margin: 0 0 80px 0; font-weight: 400; }
     .section-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 4px; color: rgba(26,26,23,0.4); margin-bottom: 25px; display: block; font-weight: 600; }
@@ -127,8 +122,11 @@
     }
     .comp-item:hover { border-color: var(--text-main); background: var(--text-main); color: var(--bg-main); }
 
-    /* --- BLOCKS --- */
-    .blocks-container { display: grid; grid-template-columns: 1fr 1fr; height: 75vh; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+    /* --- BLOCKS (Här lägger vi ID för ankare) --- */
+    .blocks-container { 
+      display: grid; grid-template-columns: 1fr 1fr; height: 75vh; 
+      border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); 
+    }
     .block {
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-decoration: none; color: var(--text-main); border-right: 1px solid var(--border-color);
@@ -169,19 +167,6 @@
     }
   </style>
 
-  <script>
-    // --- SESSION KONTROLL (KÖRS DIREKT) ---
-    // Om vi redan har sett introt under denna session, hoppa över det helt
-    if (sessionStorage.getItem('introFinished')) {
-      document.documentElement.classList.add('no-intro-style'); // Snabb-fix CSS
-      window.addEventListener('DOMContentLoaded', () => {
-        document.body.classList.add('no-intro', 'loaded');
-        // Ta bort blackout direkt
-        const loader = document.getElementById('loader');
-        if (loader) loader.style.display = 'none';
-      });
-    }
-  </script>
 </head>
 <body>
 
@@ -243,7 +228,7 @@
       </div>
     </section>
 
-    <section class="blocks-container reveal-section">
+    <section class="blocks-container reveal-section" id="selection">
       <a href="cv.html" class="block">
         <div class="number">01</div>
         <span>The Profile</span>
@@ -267,7 +252,7 @@
           <div class="tool-item"><img src="finalcutpro.png" alt=""><span>Final Cut Pro</span></div>
           <div class="tool-item"><img src="ga4.png" alt=""><span>GA4</span></div>
           <div class="tool-item"><img src="cap.png" alt=""><span>CapCut</span></div>
-          <div class="tool-item"><img src="answerthepublic.png" alt=""><span>Answer The Public</span></div>
+          <div class="tool-item"><img src="answerthepublic.png" alt=""><span>Answer Public</span></div>
           <div class="tool-item"><img src="shopify.png" alt=""><span>Shopify</span></div>
           <div class="tool-item"><img src="luckyorange.png" alt=""><span>Lucky Orange</span></div>
           <div class="tool-item"><img src="meta.png" alt=""><span>Meta Ads</span></div>
@@ -300,7 +285,43 @@
   </main>
 
   <script>
-    // --- SLIDESHOW ---
+    // --- 1. LOADER LOGIC (Snabb & Direkt) ---
+    function startLoader() {
+      if (sessionStorage.getItem('introFinished')) {
+        document.body.classList.add('no-intro', 'loaded');
+        document.getElementById('loader').style.display = 'none';
+        checkHash();
+        return;
+      }
+
+      let count = 0;
+      const countEl = document.getElementById('count');
+      const interval = setInterval(() => {
+        count += Math.floor(Math.random() * 10) + 5; // Större hopp för snabbare känsla
+        if (count >= 100) {
+          count = 100;
+          clearInterval(interval);
+          setTimeout(() => {
+            document.body.classList.add('loaded');
+            sessionStorage.setItem('introFinished', 'true');
+            checkHash();
+          }, 200);
+        }
+        countEl.innerText = count;
+      }, 20); // Uppdateras oftare
+    }
+
+    function checkHash() {
+      if (window.location.hash === '#selection') {
+        const el = document.getElementById('selection');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Starta direkt utan att vänta på window.onload
+    startLoader();
+
+    // --- 2. SLIDESHOW ---
     function initSlideshow() {
       const slides = document.querySelectorAll('#slideshow img');
       let currentSlide = 0;
@@ -312,38 +333,13 @@
     }
     initSlideshow();
 
-    // --- LOADER LOGIC ---
-    function startLoader() {
-      // Om introt redan körts i denna session, gör ingenting
-      if (sessionStorage.getItem('introFinished')) return;
-
-      let count = 0;
-      const countEl = document.getElementById('count');
-      const interval = setInterval(() => {
-        count += Math.floor(Math.random() * 8) + 2; 
-        if (count >= 100) {
-          count = 100;
-          clearInterval(interval);
-          setTimeout(() => {
-            document.body.classList.add('loaded');
-            // Spara att introt är färdigt
-            sessionStorage.setItem('introFinished', 'true');
-          }, 300);
-        }
-        countEl.innerText = count;
-      }, 30);
-    }
-
-    // Starta laddaren när fönstret laddas
-    window.onload = startLoader;
-
-    // --- INTERSECTION OBSERVER (REVEAL) ---
+    // --- 3. REVEAL OBSERVER ---
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal-section, .pitch-text').forEach(el => observer.observe(el));
 
-    // --- SCROLL EVENTS ---
+    // --- 4. SCROLL EVENTS ---
     let lastScrollY = window.scrollY;
     const header = document.getElementById('mainHeader');
     const scrollIndicator = document.getElementById('scrollIndicator');
@@ -352,31 +348,14 @@
 
     window.addEventListener('scroll', () => {
       let scrollValue = window.scrollY;
-      
-      // Header hide/show
       if (scrollValue > lastScrollY && scrollValue > 100) header.classList.add('nav-up');
       else header.classList.remove('nav-up');
-      
       lastScrollY = scrollValue;
-
-      // Scroll indicator fade
       if (scrollValue > 50) scrollIndicator.classList.add('fade-out');
       else scrollIndicator.classList.remove('fade-out');
-
-      // Hero Parallax
-      parallaxTexts.forEach(text => {
-        text.style.transform = `translateY(${scrollValue * -0.2}px)`;
-      });
-      if(parallaxImg) {
-        parallaxImg.style.transform = `translateY(${scrollValue * -0.4}px)`;
-      }
+      parallaxTexts.forEach(text => { text.style.transform = `translateY(${scrollValue * -0.2}px)`; });
+      if(parallaxImg) { parallaxImg.style.transform = `translateY(${scrollValue * -0.4}px)`; }
     }, { passive: true });
-
-    // Förhindra att webbläsaren tvingar scroll till toppen vid reload om man inte vill det,
-    // men låt historiken sköta "Go Back" positionen.
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'auto';
-    }
   </script>
 </body>
 </html>
