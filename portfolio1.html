@@ -73,7 +73,6 @@
     .back-link:hover::before, .back-link:hover::after { opacity: 0.5; }
 
     /* --- INTRO SECTION --- */
-    /* Här lägger vi ID:et 'selection' för att kunna hoppa hit */
     .cases-intro { 
       height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
       background: var(--bg-main); position: relative; z-index: 10;
@@ -88,7 +87,6 @@
     
     .case-card { width: 100%; height: 100%; position: relative; overflow: hidden; cursor: pointer; }
     
-    /* Statisk bild utan zoom-effekt */
     .case-image { width: 100%; height: 100%; object-fit: cover; object-position: right center; }
     
     .case-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%); }
@@ -96,7 +94,7 @@
     .case-info { position: absolute; bottom: 80px; left: 80px; z-index: 2; color: #fff; pointer-events: none; }
     .case-info h2 { font-family: 'Playfair Display'; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin: 0; font-weight: 400; }
 
-    /* Fotografiska specialvisning */
+    /* Fotografiska specialvisning (Dator) */
     .case-wrapper:has(.shape-photograph) { display: flex; align-items: center; justify-content: center; }
     .case-wrapper:has(.shape-photograph) .case-image { object-fit: contain !important; object-position: center !important; }
 
@@ -105,7 +103,87 @@
     .scroll-up-btn { background: none; border: none; color: var(--text-main); font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
     .scroll-up-btn span.fancy { font-family: 'Playfair Display'; font-style: italic; text-transform: lowercase; font-size: 1.1rem; }
 
-    @media (max-width: 900px) { .cursor { display: none; } .case-info { left: 40px; bottom: 60px; } }
+    /* --- MOBILANPASSNING --- */
+    @media (max-width: 900px) { 
+      .cursor { display: none; } 
+      
+      .case-wrapper { 
+        height: 100vh !important;
+        position: sticky !important; 
+        top: 0 !important; 
+        background: var(--bg-main) !important; 
+        overflow: hidden !important;
+        margin-bottom: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .case-card {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: var(--bg-main) !important;
+        overflow: hidden !important;
+        cursor: pointer !important;
+      }
+      
+      .case-wrapper .case-image { 
+        height: 65% !important;
+        width: 100% !important;
+        object-fit: contain !important; 
+        object-position: center !important;
+        padding: 20px !important;
+      }
+
+      .case-card::after { 
+        display: none !important; 
+      }
+
+      .case-info { 
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        padding: 0 30px 40px 30px !important;
+        pointer-events: auto !important;
+      }
+
+      .case-info h2,
+      .case-info span,
+      .case-info p {
+        color: var(--text-main) !important;
+        text-shadow: none !important;
+      }
+
+      .case-info span {
+        font-size: 0.85rem !important; 
+        font-weight: 700 !important;
+        opacity: 0.6;
+        margin-bottom: 6px !important;
+        display: block;
+      }
+
+      .case-info h2 { 
+        font-size: 1.8rem !important;
+        margin-bottom: 4px !important;
+        font-family: 'Playfair Display' !important;
+        font-style: italic !important;
+        font-weight: 400 !important;
+      }
+
+      .case-info p {
+        font-size: 0.75rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.5px !important;
+        font-weight: 400 !important;
+        font-family: 'Montserrat' !important;
+      }
+      
+      .header { 
+        padding: 30px !important; 
+      }
+    }
   </style>
 </head>
 <body>

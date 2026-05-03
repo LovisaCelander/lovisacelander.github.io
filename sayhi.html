@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Say Hi — Lovisa Celander</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -117,23 +117,11 @@
       letter-spacing: -1px;
     }
 
-    /* --- FOOTER --- */
-    .footer-minimal {
-      position: absolute; bottom: 40px; left: 60px; right: 60px;
-      display: flex; justify-content: flex-end;
-    }
-    .footer-link {
-      text-decoration: none; color: var(--text-light); font-size: 0.65rem;
-      text-transform: uppercase; letter-spacing: 2px; margin-left: 40px;
-      font-weight: 600; opacity: 0.3; transition: 0.4s;
-    }
-    .footer-link:hover { opacity: 1; text-shadow: 0 0 10px rgba(253, 248, 243, 0.5); }
-
     .fade-up { animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
     @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 900px) {
-      .header, .contact-container, .footer-minimal { padding: 30px; }
+      .header, .contact-container { padding: 30px; }
       .input-oval { padding: 20px 30px; }
     }
   </style>
@@ -167,11 +155,6 @@
       <h2>Thanks! I can't wait to read your email.</h2>
     </div>
   </main>
-
-  <footer class="footer-minimal fade-up" style="animation-delay: 0.4s;">
-    <a href="mailto:celanderlovisa@gmail.com" class="footer-link">Email</a>
-    <a href="https://linkedin.com/in/lovisacelander" target="_blank" class="footer-link">Linkedin</a>
-  </footer>
 
   <script>
     let hasSent = false;
