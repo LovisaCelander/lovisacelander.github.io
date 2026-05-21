@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lovisa Celander — Videos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { background: #f8f7f4; font-family: 'Montserrat', sans-serif; color: #1e1b18; }
+
+/* Sticky Sections */
+section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f8f7f4; }
+
+/* Navigation */
+.nav-top { 
+    position: fixed; 
+    top: 40px; 
+    left: 40px; 
+    z-index: 1000; 
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.nav-top.hidden { 
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+}
+
+.nav-top a { 
+    text-decoration: none; 
+    color: #1e1b18; 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 500; 
+    transition: 0.3s ease; 
+}
+
+.nav-top a::before { content: '['; margin-right: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a::after { content: ']'; margin-left: 8px; opacity: 0; transition: 0.3s; }
+.nav-top a:hover::before, .nav-top a:hover::after { opacity: 0.5; }
+
+/* Hero */
+.hero { z-index: 10; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 400; letter-spacing: -3px; text-transform: uppercase; }
+.scroll { margin-top: 20px; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; }
+
+/* Video Blocks (Redaktionell layout) */
+.video-container-section { 
+    z-index: 30; 
+    padding: 80px 60px; 
+    position: relative; 
+    height: auto; 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+} 
+.video-inner { max-width: 1100px; width: 100%; text-align: left; }
+.video-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 60px; letter-spacing: -1px; }
+
+/* Asymmetrisk grid: Vänster sida är bredare, höger sida staplar två videos */
+.video-editorial-grid { 
+    display: grid; 
+    grid-template-columns: 1.2fr 0.8fr; 
+    gap: 80px; 
+    align-items: start; 
+}
+
+.video-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* Snygg inramning av videos */
+.video-wrapper {
+    width: 100%;
+    background: transparent; 
+    margin-bottom: 20px;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    object-fit: contain; 
+    display: block;
+    cursor: pointer; /* Visar en hand när man hovrar över videon så man fattar att den går att klicka på */
+}
+
+/* Beskrivningar under klippen */
+.video-meta span { 
+    display: block; 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: 700; 
+    opacity: 0.4; 
+    margin-bottom: 8px; 
+}
+.video-meta p { 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    color: #333;
+    max-width: 450px;
+}
+
+/* NEXT SECTION */
+.next { z-index: 90; flex-direction: column; text-align: center; }
+.next span { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; opacity: 0.4; margin-bottom: 20px; }
+.next h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); font-weight: 400; letter-spacing: -2px; transition: 0.4s ease; text-transform: uppercase; }
+.next a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; }
+.next a:hover h2 { font-style: italic; }
+
+.back-link { margin-top: 50px; }
+.back-link a { 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    font-weight: 500; 
+    opacity: 0.4; 
+    text-decoration: none; 
+    color: #1e1b18; 
+    transition: 0.3s;
+}
+.back-link a:hover { opacity: 1; }
+
+/* Responsiv design för mobiler */
+@media (max-width: 1000px) { 
+    .nav-top { top: 20px; left: 20px; } 
+    .video-editorial-grid { grid-template-columns: 1fr; gap: 60px; } 
+    .video-container-section { padding: 60px 30px; }
+    .video-side-column { gap: 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-top" id="mainNav"><a href="index.html#selection">Go back</a></nav>
+
+<section class="hero">
+  <div>
+    <h1>Videos.</h1>
+    <div class="scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<section class="video-container-section">
+    <div class="video-inner">
+        <h2>Clips</h2>
+        
+        <div class="video-editorial-grid">
+            
+            <div class="video-main-item">
+                <div class="video-wrapper">
+                    <video playsinline controls>
+                        <source src="video1.MP4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-meta">
+            
+                </div>
+            </div>
+
+            <div class="video-side-column">
+                
+                <div class="video-side-item">
+                    <div class="video-wrapper">
+                        <video playsinline controls>
+                            <source src="video2.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-meta">
+                    
+                    </div>
+                </div>
+
+                <div class="video-side-item">
+                    <div class="video-wrapper">
+                        <video playsinline controls>
+                            <source src="video3.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-meta">
+                    
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="next">
+    <span>Next step</span>
+    <a href="portfolio1.html"><h2>See Cases</h2></a>
+    
+    <div class="back-link">
+        <a href="index.html">Or go back to home</a>
+    </div>
+</section>
+
+<script>
+    let lastScrollY = window.scrollY;
+    const nav = document.getElementById('mainNav');
+
+    window.addEventListener('scroll', () => {
+        let currentScrollY = window.scrollY;
+        let windowHeight = window.innerHeight;
+        let fullHeight = document.documentElement.scrollHeight;
+
+        if (currentScrollY < 50) {
+            nav.classList.remove('hidden');
+        } 
+        else if (currentScrollY + windowHeight >= fullHeight - 50) {
+            nav.classList.add('hidden');
+        }
+        else if (currentScrollY > lastScrollY) {
+            nav.classList.add('hidden');
+        } 
+        else {
+            nav.classList.remove('hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+    }, { passive: true });
+</script>
+
+</body>
+</html>

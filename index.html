@@ -122,9 +122,9 @@
     }
     .comp-item:hover { border-color: var(--text-main); background: var(--text-main); color: var(--bg-main); }
 
-    /* --- BLOCKS (Här lägger vi ID för ankare) --- */
+    /* --- BLOCKS (Uppdaterad till 3 kolumner för att rymma Videos snyggt) --- */
     .blocks-container { 
-      display: grid; grid-template-columns: 1fr 1fr; height: 75vh; 
+      display: grid; grid-template-columns: repeat(3, 1fr); height: 75vh; 
       border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); 
     }
     .block {
@@ -238,6 +238,11 @@
         <div class="number">02</div>
         <span>Work & Projects</span>
         <h2>Cases</h2>
+      </a>
+      <a href="videos.html" class="block" id="videos">
+        <div class="number">03</div>
+        <span>Clips</span>
+        <h2>Videos</h2>
       </a>
     </section>
 
