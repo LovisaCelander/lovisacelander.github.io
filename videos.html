@@ -64,15 +64,15 @@ section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; a
 .video-inner { max-width: 1100px; width: 100%; text-align: left; }
 .video-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 60px; letter-spacing: -1px; }
 
-/* Asymmetrisk grid: Vänster sida är bredare, höger sida staplar två videos */
+/* Grid för två kolumner */
 .video-editorial-grid { 
     display: grid; 
-    grid-template-columns: 1.2fr 0.8fr; 
+    grid-template-columns: 1fr 1fr; 
     gap: 80px; 
     align-items: start; 
 }
 
-.video-side-column {
+.video-column {
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -90,7 +90,7 @@ section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; a
     height: auto;
     object-fit: contain; 
     display: block;
-    cursor: pointer; /* Visar en hand när man hovrar över videon så man fattar att den går att klicka på */
+    cursor: pointer;
 }
 
 /* Beskrivningar under klippen */
@@ -135,7 +135,7 @@ section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; a
     .nav-top { top: 20px; left: 20px; } 
     .video-editorial-grid { grid-template-columns: 1fr; gap: 60px; } 
     .video-container-section { padding: 60px 30px; }
-    .video-side-column { gap: 60px; }
+    .video-column { gap: 60px; }
 }
 </style>
 </head>
@@ -156,39 +156,57 @@ section { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; a
         
         <div class="video-editorial-grid">
             
-            <div class="video-main-item">
-                <div class="video-wrapper">
-                    <video playsinline controls>
-                        <source src="video1.MP4" type="video/mp4">
-                    </video>
+            <!-- VÄNSTER KOLUMN (Video 1, 4, 6) -->
+            <div class="video-column">
+                
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <video playsinline controls>
+                            <source src="video1.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-meta"></div>
                 </div>
-                <div class="video-meta">
-            
+
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <video playsinline controls>
+                            <source src="video4.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-meta"></div>
                 </div>
+
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <video playsinline controls>
+                            <source src="video6.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-meta"></div>
+                </div>
+
             </div>
 
-            <div class="video-side-column">
+            <!-- HÖGER KOLUMN (Video 2, 5) -->
+            <div class="video-column">
                 
-                <div class="video-side-item">
+                <div class="video-item">
                     <div class="video-wrapper">
                         <video playsinline controls>
                             <source src="video2.MP4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-meta">
-                    
-                    </div>
+                    <div class="video-meta"></div>
                 </div>
 
-                <div class="video-side-item">
+                <div class="video-item">
                     <div class="video-wrapper">
                         <video playsinline controls>
-                            <source src="video3.MP4" type="video/mp4">
+                            <source src="video5.MP4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-meta">
-                    
-                    </div>
+                    <div class="video-meta"></div>
                 </div>
 
             </div>
