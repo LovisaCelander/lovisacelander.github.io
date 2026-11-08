@@ -78,6 +78,7 @@
     .hero-img-box img { 
       width: 100%; height: 100%; object-fit: cover; 
       position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.6s ease-in-out;
+      transform: scale(1.12);
     }
     .hero-img-box img.active { opacity: 1; position: relative; }
 
@@ -110,36 +111,64 @@
     }
     .pitch-text.in-view { filter: blur(0); opacity: 1; transform: translateY(0); }
 
-    /* --- CONTENT GRID --- */
+    /* --- CONTENT GRID & FLYTANDE TAGGAR --- */
     .content-grid { padding: 100px 60px 150px 60px; max-width: 1400px; margin: 0 auto; }
-    .huge-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; text-transform: uppercase; letter-spacing: -4px; margin: 0 0 80px 0; font-weight: 400; }
+    .huge-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6.5vw, 5.5rem); line-height: 1.05; text-transform: uppercase; letter-spacing: -2px; margin: 0 0 60px 0; font-weight: 400; }
     .section-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 4px; color: rgba(26,26,23,0.4); margin-bottom: 25px; display: block; font-weight: 600; }
     .competence-list { display: flex; flex-wrap: wrap; gap: 15px; max-width: 1000px; }
+    
     .comp-item { 
-        font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.8vw, 2.2rem); 
-        font-style: italic; border: 1px solid var(--border-color);
-        padding: 12px 30px; border-radius: 100px; transition: 0.4s;
+      font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.8vw, 2.2rem); 
+      font-style: italic; border: 1px solid var(--border-color);
+      padding: 12px 30px; border-radius: 100px; 
+      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: default; will-change: transform;
     }
-    .comp-item:hover { border-color: var(--text-main); background: var(--text-main); color: var(--bg-main); }
+    .comp-item:hover { 
+      border-color: var(--text-main); background: var(--text-main); color: var(--bg-main); 
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    }
 
-    /* --- BLOCKS (Uppdaterad till 3 kolumner för att rymma Videos snyggt) --- */
+    /* --- STICKY BLOCKS MED REN SVART HOVER & SAMMA FONT --- */
+    .blocks-sticky-wrapper {
+      position: sticky;
+      top: 0;
+      height: 75vh;
+      z-index: 40;
+    }
+
     .blocks-container { 
-      display: grid; grid-template-columns: repeat(3, 1fr); height: 75vh; 
+      display: grid; grid-template-columns: repeat(3, 1fr); height: 100%; 
       border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); 
     }
     .block {
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-decoration: none; color: var(--text-main); border-right: 1px solid var(--border-color);
-      transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); background: var(--bg-main); position: relative;
+      transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: var(--bg-main); position: relative;
     }
     .block:last-child { border-right: none; }
     .block:hover { background: #1a1a17; color: #fdf8f3; }
-    .block .number { position: absolute; top: 40px; left: 40px; font-size: 0.8rem; font-weight: 500; letter-spacing: 2px; opacity: 0.5; }
-    .block span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; font-weight: 600; }
-    .block h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); margin: 0; text-transform: uppercase; font-weight: 400; }
+    
+    .block .number { position: absolute; top: 40px; left: 40px; font-size: 0.8rem; font-weight: 500; letter-spacing: 2px; opacity: 0.5; transition: 0.4s; }
+    .block span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; font-weight: 600; transition: 0.4s; }
+    
+    .block h2 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: clamp(2.2rem, 5vw, 4.5rem); 
+      margin: 0; text-transform: uppercase; font-weight: 400; 
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .block:hover .number { opacity: 0.8; transform: translateY(-3px); }
+    .block:hover span { transform: translateY(-4px); }
+    .block:hover h2 { transform: translateY(-6px) scale(1.02); }
 
     /* --- TOOLS --- */
-    .tools-outer-wrap { background: var(--dark-section); color: var(--dark-text); margin-top: -1px; }
+    .tools-outer-wrap { background: var(--dark-section); color: var(--dark-text); position: relative; z-index: 50; margin-top: -1px; }
     .tools-label-container { padding: 120px 60px 0 60px; text-align: center; }
     .tools-label-container span { color: rgba(253, 248, 243, 0.4); text-transform: uppercase; letter-spacing: 12px; font-size: 0.75rem; font-weight: 600; }
     .tools-carousel { padding: 60px 0 160px 0; overflow: hidden; }
@@ -150,7 +179,7 @@
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * 8)); } }
 
     /* --- FOOTER --- */
-    .footer { padding: 150px 60px; text-align: center; border-top: 1px solid var(--border-color); }
+    .footer { padding: 150px 60px; text-align: center; border-top: 1px solid var(--border-color); background-color: var(--bg-main); position: relative; z-index: 50; }
     .footer h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); margin-bottom: 80px; font-style: italic; font-weight: 400; }
     .contact-links { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; gap: 40px; }
     .contact-item { text-decoration: none; color: var(--text-main); transition: 0.3s; }
@@ -160,6 +189,7 @@
 
     @media (max-width: 900px) {
       .header { padding: 20px 30px; }
+      .blocks-sticky-wrapper { position: relative; height: auto; }
       .blocks-container { grid-template-columns: 1fr; height: auto; }
       .block { height: 45vh; border-right: none; border-bottom: 1px solid var(--border-color); }
       .contact-links { grid-template-columns: 1fr; gap: 50px; }
@@ -192,12 +222,16 @@
       <h1 class="reveal-section parallax-text">Lovisa</h1>
       <div class="hero-img-box reveal-section parallax-img" id="slideshow">
         <img src="skåne1.png" alt="Skåne" class="active">
+        <img src="intro15.png" alt="">
         <img src="intro11.jpg" alt="">
         <img src="intro2.jpg" alt="">
+        <img src="intro16.png" alt="">
         <img src="intro7.jpg" alt="">
         <img src="intro4.jpg" alt="">
+        <img src="intro17.png" alt="">
         <img src="intro14.jpg" alt="">
         <img src="intro6.jpg" alt="">
+        <img src="intro18.png" alt="">
         <img src="intro9.jpg" alt="">
         <img src="intro12.jpg" alt="">
         <img src="intro5.jpg" alt="">
@@ -213,37 +247,38 @@
     </section>
 
     <section class="content-grid reveal-section">
-      <h2 class="huge-title">Growth<br>Marketing</h2>
+      <h2 class="huge-title">STRATEGY & CREATIVITY<br></h2>
       <span class="section-label">Competence</span>
       <div class="competence-list">
-        <div class="comp-item">Digital Strategy</div>
+        <div class="comp-item">Creative Strategy</div>
         <div class="comp-item">Content Creation</div>
-        <div class="comp-item">Paid Social</div>
+        <div class="comp-item">Content Strategy</div>
+        <div class="comp-item">Performance Marketing</div>
         <div class="comp-item">Data Analysis</div>
         <div class="comp-item">SEO</div>
-        <div class="comp-item">SEM</div>
         <div class="comp-item">Influencer & UGC Marketing</div>
-         <div class="comp-item">CRO</div>
       </div>
     </section>
 
-    <section class="blocks-container reveal-section" id="selection">
-      <a href="cv.html" class="block">
-        <div class="number">01</div>
-        <span>The Profile</span>
-        <h2>CV</h2>
-      </a>
-      <a href="portfolio1.html" class="block" id="cases">
-        <div class="number">02</div>
-        <span>Work & Projects</span>
-        <h2>Cases</h2>
-      </a>
-      <a href="videos.html" class="block" id="videos">
-        <div class="number">03</div>
-        <span>Clips</span>
-        <h2>Videos</h2>
-      </a>
-    </section>
+    <div class="blocks-sticky-wrapper">
+      <section class="blocks-container reveal-section" id="selection">
+        <a href="cv.html" class="block">
+          <div class="number">01</div>
+          <span>The Profile</span>
+          <h2>CV</h2>
+        </a>
+        <a href="portfolio1.html" class="block" id="cases">
+          <div class="number">02</div>
+          <span>Work & Projects</span>
+          <h2>Projects</h2>
+        </a>
+        <a href="videos.html" class="block" id="videos">
+          <div class="number">03</div>
+          <span>Clips</span>
+          <h2>Content</h2>
+        </a>
+      </section>
+    </div>
 
     <div class="tools-outer-wrap reveal-section">
       <div class="tools-label-container"><span>Tools</span></div>
@@ -301,7 +336,7 @@
       let count = 0;
       const countEl = document.getElementById('count');
       const interval = setInterval(() => {
-        count += Math.floor(Math.random() * 10) + 5; // Större hopp för snabbare känsla
+        count += Math.floor(Math.random() * 10) + 5;
         if (count >= 100) {
           count = 100;
           clearInterval(interval);
@@ -312,7 +347,7 @@
           }, 200);
         }
         countEl.innerText = count;
-      }, 20); // Uppdateras oftare
+      }, 20);
     }
 
     function checkHash() {
@@ -322,7 +357,6 @@
       }
     }
 
-    // Starta direkt utan att vänta på window.onload
     startLoader();
 
     // --- 2. SLIDESHOW ---
@@ -357,8 +391,9 @@
       lastScrollY = scrollValue;
       if (scrollValue > 50) scrollIndicator.classList.add('fade-out');
       else scrollIndicator.classList.remove('fade-out');
-      parallaxTexts.forEach(text => { text.style.transform = `translateY(${scrollValue * -0.2}px)`; });
-      if(parallaxImg) { parallaxImg.style.transform = `translateY(${scrollValue * -0.4}px)`; }
+      
+      parallaxTexts.forEach(text => { text.style.transform = `translateY(${scrollValue * 0.08}px)`; });
+      if(parallaxImg) { parallaxImg.style.transform = `translateY(${scrollValue * 0.15}px)`; }
     }, { passive: true });
   </script>
 </body>
